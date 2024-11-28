@@ -44,13 +44,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} h-[100vh] lg:h-[110vh] w-full relative`}
+        className={`${roboto.className} min-h-screen  w-full relative`}
         // lg:h-[120vh]
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QuickContact />
         <TopNavigation />
+
         {children}
+
         <Footer />
       </body>
     </html>

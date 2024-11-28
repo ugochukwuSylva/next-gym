@@ -12,7 +12,7 @@ export default function TabHeaderItem({
   return (
     <div
       onClick={onTabClick}
-      className={`text-xl  whitespace-nowrap cursor-pointer h-[3.2rem] font-semibold border-transparent ${
+      className={`text-xl w-fit whitespace-nowrap cursor-pointer h-[3.2rem] font-semibold border-transparent ${
         isCurrentTabHeader ? "md:border-b-4 md:border-red-500 text-red-500" : ""
       }`}
     >

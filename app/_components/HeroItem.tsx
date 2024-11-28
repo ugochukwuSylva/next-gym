@@ -14,7 +14,7 @@ export default function HeroItem({ image, text1, text2 }: Props) {
         src={image}
         alt="hero-image"
         fill
-        className=" -z-30 object-cover object-top"
+        className=" -z-30 object-cover"
         quality={100}
         // sizes="100vw"
       />

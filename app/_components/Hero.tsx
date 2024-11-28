@@ -37,7 +37,7 @@ export default function Hero() {
   const { targetRef } = useFixedOnScroll();
 
   return (
-    <div ref={targetRef} className="w-full h-full   relative">
+    <div ref={targetRef} className="w-full min-h-[110vh] relative">
       <div className="w-full h-auto ">
         {heros[count]}
         {/*  */}

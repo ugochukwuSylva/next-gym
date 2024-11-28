@@ -7,7 +7,8 @@ export function useBottomPage() {
     const scrollPosition = window.innerHeight + window.scrollY;
     const documentHeight = window.document.documentElement.scrollHeight;
 
-    if (scrollPosition >= documentHeight) {
+    if (scrollPosition >= documentHeight - 200) {
+      // i deducted 200 because i don't want the page to go exactly at the bottom
       setIsBottomPage(true);
     } else {
       setIsBottomPage(false);

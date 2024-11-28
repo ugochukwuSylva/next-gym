@@ -6,7 +6,7 @@ import TestimonialCard from "./TestimonialCard";
 
 export default function SectionFive() {
   return (
-    <div className="pt-24 pb-[100vh] px-8 md:px-16 w-full bg-gradient-to-b from-white to-transparent from-55% to-55%">
+    <div className="pt-24 lg:pb-[100vh] px-8 md:px-16 w-full bg-gradient-to-b from-white to-transparent from-55% to-55%">
       <div className="flex justify-center group toCenter">
         <SectionHeaders
           text1="Our Clients Testimonials"

@@ -52,8 +52,8 @@ export default function TopNavigation() {
       <div
         className={`w-full md:w-[98%] md:rounded-md transition-all ${
           isBottomPage
-            ? "opacity-0 invisible h-0 duration-300"
-            : "opacity-100 visible h-24 duration-500"
+            ? "opacity-100 lg:opacity-0 visible lg:invisible h-24 lg:h-0 duration-300"
+            : "opacity-100 lg:visible h-24 duration-500"
         } bg-black md:bg-black/60 flex justify-between  px-4 md:justify-around items-center`}
       >
         <span className="hidden md:block">
