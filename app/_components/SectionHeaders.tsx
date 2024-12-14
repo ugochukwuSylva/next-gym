@@ -16,7 +16,7 @@ export default function SectionHeaders({
   children,
 }: Props) {
   return (
-    <div className="flex flex-col justify-start md:items-start items-center gap-6 text-center md:text-start *:group-[.whiteText]:text-stone-100">
+    <div className=" flex flex-col justify-start md:items-start items-center gap-6 text-center md:text-start *:group-[.whiteText]:text-stone-100">
       <p className="text-stone-400 text-xl font-light group-[.toCenter]:m-auto group-[.whiteText]:translate-y-2">
         {text1}
       </p>

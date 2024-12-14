@@ -1,23 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import HeroItem from "./HeroItem";
+import HeroItem1 from "./HeroItem1";
 import HeroItemMini from "./HeroItemMini";
 import TextExpander from "./TextExpander";
 import useFixedOnScroll from "../customHook/useFixedOnScroll";
+import HeroItem2 from "./HeroItem2";
 
 export default function Hero() {
   const [count, setCount] = useState(0);
 
   const heros = [
-    <HeroItem
+    <HeroItem1
       key={1}
       image="/hero-image-1.jpg"
       text1="Possibilities"
       text2="abs workout"
     />,
 
-    <HeroItem
+    <HeroItem2
       key={2}
       image="/hero-image-2.png"
       text1="Strong mind"
@@ -37,11 +38,12 @@ export default function Hero() {
   const { targetRef } = useFixedOnScroll();
 
   return (
-    <div ref={targetRef} className="w-full min-h-[110vh] relative">
+    <div ref={targetRef} className="w-full min-h-[110vh] relative z-20">
       <div className="w-full h-auto ">
         {heros[count]}
         {/*  */}
-        <div className="h-[24rem] w-[95%] md:px-10 rounded-sm translate-center flex lg:flex-row flex-col lg:gap-6 gap-3">
+
+        <div className=" h-[24rem] w-[95%] md:px-10 rounded-sm translate-center flex lg:flex-row flex-col lg:gap-6 gap-3">
           <HeroItemMini
             image="/hero-image-mini-1.jpg"
             headingText="for / her"

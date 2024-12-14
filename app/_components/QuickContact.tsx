@@ -3,7 +3,7 @@ import QuickContactIcons from "./QuickContactIcons";
 export default function QuickContact() {
   return (
     <div className="hidden md:block">
-      <div className=" flex justify-between absolute top-0 z-50 w-full px-10 py-5 bg-gradient-to-b from-black to-transparent ">
+      <div className=" flex justify-between absolute top-0 z-50 w-full px-10 py-5 bg-gradient-to-b from-black/70 to-transparent ">
         <span className="  text-sm text-slate-300 cursor-pointer hover:text-red-500 transition-all duration-100">
           <a href="tel:09096859314">
             {" "}

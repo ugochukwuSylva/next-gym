@@ -14,8 +14,8 @@ export default function Footer() {
   return (
     <div
       className={`min-h-full bg-black ${
-        isBottomPage ? "" : "-z-50"
-      }  px-4 py-3 md:px-10 text-white relative  lg:fixed  lg:left-0 lg:bottom-0 w-full`}
+        isBottomPage ? "" : "lg:-z-50"
+      } md:z-10  px-4 py-3 md:px-10 text-white relative  lg:fixed  lg:left-0 lg:bottom-0 w-full`}
     >
       <Image
         src="/footer-bg.jpg"

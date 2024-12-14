@@ -18,12 +18,12 @@ export default function DoYouKnow() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4  items-center lg:items-start">
+      <div className="flex flex-col gap-4 md:flex-row md:gap-10 lg:gap-4 items-center lg:flex-col lg:items-start">
         <Link
           href=""
-          className="group flex flex-col lg:flex-row items-center  gap-3 group transition-all cursor-pointer w-fit mb-4 lg:mb-0"
+          className="group flex flex-col  lg:flex-row items-center  gap-3 group transition-all cursor-pointer w-fit mb-4 lg:mb-0   "
         >
-          <span className="rounded-full p-2 bg-red-500 group-hover:bg-red-900/30 text-xl">
+          <span className="rounded-full  p-2 bg-red-500 group-hover:bg-red-900/30 text-xl">
             <FaLocationDot className="group-hover:text-red-600 duration-500" />
           </span>{" "}
           <span className="group-hover:text-red-500  duration-300 delay-300">
@@ -33,7 +33,7 @@ export default function DoYouKnow() {
 
         <Link
           href="tel:09096859314"
-          className="group flex flex-col lg:flex-row items-center gap-3 group transition-all cursor-pointer w-fit mb-4 lg:mb-0"
+          className="group flex flex-col  lg:flex-row items-center gap-3 group transition-all cursor-pointer w-fit mb-4 lg:mb-0 "
         >
           <span className="rounded-full p-2 bg-red-500 group-hover:bg-red-900/30 text-xl">
             <MdCall className="group-hover:text-red-600 duration-500" />
@@ -45,7 +45,7 @@ export default function DoYouKnow() {
 
         <Link
           href="mailTo:sylvaspecial@gmail.com"
-          className="group flex flex-col lg:flex-row  items-center gap-3 group transition-all cursor-pointer w-fit mb-4 lg:mb-0"
+          className="group flex flex-col  lg:flex-row  items-center gap-3 group transition-all cursor-pointer w-fit mb-4 lg:mb-0 "
         >
           <span className="rounded-full p-2 bg-red-500 group-hover:bg-red-900/30 text-xl">
             <HiOutlineMailOpen className="group-hover:text-red-600 duration-500" />

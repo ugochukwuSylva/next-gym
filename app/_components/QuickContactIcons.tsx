@@ -32,7 +32,7 @@ export default function QuickContactIcons({ iconSize }: Props) {
         </span>
       </li>
 
-      <li className="group p-2 md:p-1 rounded-full bg-stone-500/40 md:bg-transparent  transition-all duration-200">
+      <li className="group p-2 md:p-1 rounded-full bg-stone-500/40 md:bg-transparent  hover:bg-stone-500  transition-all duration-200">
         <Link href="https://github.com/ugochukwuSylva" target="_blank">
           <FaGithub size={iconSize} className="group-hover:rotate-side" />
         </Link>

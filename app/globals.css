@@ -31,8 +31,8 @@
     mask-image: linear-gradient(
       90deg,
       transparent,
-      #000,
       #000 40%,
+      #000,
       #000 60%,
       transparent
     );

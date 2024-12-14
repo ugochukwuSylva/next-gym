@@ -28,14 +28,14 @@ export default function Slider() {
       {/* prettier-ignore */}
       <div className="slider-animation group-hover:slider-animation-hover flex gap-16 flex-shrink-0 flex-grow-0 basis-auto min-w-min pr-5 md:pr-10" >
         {logoImage.map((imageSrc) => {
-          return <Image src={imageSrc} key='1' alt="sponsorer-image" className="w-full object-contain" width={100} height={100}/>
+          return <Image src={imageSrc} key={Math.random()} alt="sponsorer-image" className="w-full object-contain" width={100} height={100}/>
         })}
       </div>
 
       {/* prettier-ignore */}
       <div className="slider-animation group-hover:slider-animation-hover flex gap-16 flex-shrink-0 flex-grow-0 basis-auto min-w-min pr-5 md:pr-10">
         {logoImage.map((imageSrc) => {
-          return <Image src={imageSrc} key='2' alt="sponsorer-image" className="w-full object-contain" width={100} height={100}/>
+          return <Image src={imageSrc} key={Math.random()} alt="sponsorer-image" className="w-full object-contain" width={100} height={100}/>
         })}
       </div>
     </div>

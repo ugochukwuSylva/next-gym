@@ -21,6 +21,7 @@ export default function HeroItemMini({
         fill
         quality={80}
         className="object-cover -z-30 "
+        sizes="100"
       />
       <div className="absolute  top-0 left-0 w-full h-full bg-gradient-to-b from-black/80 via-red-950/90 from-10% to-red-400/50  -z-20"></div>
       {/*  */}

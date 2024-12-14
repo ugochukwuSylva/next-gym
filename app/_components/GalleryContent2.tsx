@@ -9,7 +9,13 @@ type Props = {
 export default function GalleryContent2({ imageUrl }: Props) {
   return (
     <picture className="w-full h-96 lg:h-full relative cursor-pointer">
-      <Image src={imageUrl} alt="" className="object-cover  rounded-md" fill />
+      <Image
+        src={imageUrl}
+        alt=""
+        className="object-cover  rounded-md"
+        fill
+        sizes="100"
+      />
       {/*  */}
       <Overlay icon={<FaPlus />} size="text-4xl" customName="plus" />
     </picture>

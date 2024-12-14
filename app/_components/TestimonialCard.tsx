@@ -22,7 +22,7 @@ export default function TestimonialCard({
       </div>
 
       <blockquote>
-        <p className="text-xl text-center italic before:content-['\201F'] after:content-['\201D'] before:text-9xl after:text-9xl before:top-0 before:left-0 before:absolute after:absolute after:-bottom-16 after:right-8 after:text-stone-100 before:text-stone-100">
+        <p className="text-xl text-center italic before:content-['\201F'] after:content-['\201F']  before:text-9xl after:text-9xl before:top-0 before:left-0 before:absolute after:absolute after:-bottom-0 after:right-0 after:text-stone-100 before:text-stone-100 after:rotate-[180deg]">
           {children}
         </p>
       </blockquote>
@@ -31,6 +31,7 @@ export default function TestimonialCard({
         alt="background-image"
         fill
         className="object-cover rounded-md -z-40 opacity-20"
+        sizes="100"
       />
 
       <div className="absolute -top-[13%] left-[40%]">

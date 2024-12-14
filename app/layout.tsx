@@ -4,6 +4,7 @@ import { Roboto, Viga } from "next/font/google";
 import "./globals.css";
 import QuickContact from "./_components/QuickContact";
 import TopNavigation from "./_components/TopNavigation";
+import { auth } from "@/auth";
 import Footer from "./_components/Footer";
 
 const roboto = Roboto({
@@ -32,15 +33,18 @@ export const viga = Viga({
 
 export const metadata: Metadata = {
   title: {
-    template: "Keeping fit is a way of life",
+    template: "%s: Keeping fit is a way of life",
     default: "Welcome to Next-Gym",
   },
   description: "Gymnastic inspiration",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const session = await auth();
+  const avatar = session?.user?.image;
+
   return (
     <html lang="en">
       <body
@@ -49,11 +53,10 @@ export default function RootLayout({
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QuickContact />
-        <TopNavigation />
+        <TopNavigation avatar={avatar} />
 
         {children}
-
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

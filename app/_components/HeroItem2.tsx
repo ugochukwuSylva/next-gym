@@ -7,7 +7,7 @@ type Props = {
   text2: string;
 };
 
-export default function HeroItem({ image, text1, text2 }: Props) {
+export default function HeroItem2({ image, text1, text2 }: Props) {
   return (
     <div className="w-full">
       <Image
@@ -22,7 +22,7 @@ export default function HeroItem({ image, text1, text2 }: Props) {
         <motion.span
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0 }}
+          transition={{ duration: 1, delay: 1 }}
           className="text-gray-200 rounded-md bg-gradient-to-r from-red-500 to-transparent text-2xl  md:text-3xl lg:text-4xl uppercase p-3 lg:p-6 font-semibold tracking-wider"
         >
           {text1}
@@ -30,7 +30,7 @@ export default function HeroItem({ image, text1, text2 }: Props) {
         <motion.span
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
+          transition={{ duration: 1, delay: 2 }}
           className="text-red-500 rounded-md bg-gradient-to-r from-black from-10% to-transparent  text-3xl md:text-5xl lg:text-5xl uppercase p-3 lg:p-6 font-semibold tracking-wider block mt-4 lg:mt-8"
         >
           {text2}

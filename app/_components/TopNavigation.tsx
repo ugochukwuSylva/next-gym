@@ -2,46 +2,51 @@
 
 import { FaLocationDot } from "react-icons/fa6";
 import TopNavigationItem from "./TopNavigationItem";
-import { MdCall } from "react-icons/md";
+// import { MdCall } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import Logo from "./Logo";
 import { useState } from "react";
 import QuickContactIcons from "./QuickContactIcons";
-import Link from "next/link";
+// import Link from "next/link";
 import FooterText from "./FooterText";
 import Xbutton from "./CloseButton";
 import { useBottomPage } from "../customHook/useBottomPage";
+import Image from "next/image";
 
-export default function TopNavigation() {
+type Props = {
+  avatar: string | undefined | null;
+};
+
+export default function TopNavigation({ avatar }: Props) {
   const nav = [
     {
-      param: "/",
+      address: "/",
       text1: "Home",
       text2: "Start here",
     },
     {
-      param: "/about",
+      address: "/about",
       text1: "About",
       text2: "Our team",
     },
     {
-      param: "/gym-classes",
+      address: "/gym-classes",
+
       text1: "Classes",
       text2: "Training",
     },
     {
-      param: "/article",
+      address: "/article",
       text1: "Article",
       text2: "Tutorials",
     },
     {
-      param: "/join-now",
+      address: "/join-now",
       text1: "Join now",
       text2: "Membership",
     },
   ];
 
-  const [isActive, setIsActive] = useState<number>(0);
   const [isSideMenuShown, setIsSideMenuShown] = useState<boolean>(false);
 
   const { isBottomPage } = useBottomPage();
@@ -57,20 +62,28 @@ export default function TopNavigation() {
         } bg-black md:bg-black/60 flex justify-between  px-4 md:justify-around items-center`}
       >
         <span className="hidden md:block">
-          <Logo setIsActive={setIsActive} />
+          <Logo />
         </span>
 
         <div className="hidden  md:flex justify-center items-center h-full">
           {nav.map((navItem, index) => (
             <TopNavigationItem
               items={navItem}
-              key={navItem.param}
-              isActiveLink={isActive === index}
+              key={navItem.address}
               index={index}
-              setIsActive={setIsActive}
             />
           ))}
         </div>
+
+        {avatar && ( // prettier-ignore
+          <Image
+            src={avatar}
+            alt="avatar"
+            width={100}
+            height={100}
+            className="rounded-full w-10 h-10"
+          />
+        )}
 
         <div className="group rounded-md  cursor-pointer text-red-600 hidden md:block  bg-red-600/20 ">
           <div className="rounded-md group-hover:!bg-red-500 group-hover:!text-white  flex  justify-around items-center   transition-colors duration-200 tracking-wide p-4   lg:px-10 lg:py-1 gap-5">
@@ -91,14 +104,24 @@ export default function TopNavigation() {
       </div>
       {/* display only on mobile view */}
       <div className="md:hidden fixed backdrop-blur-md bg-black/50 left-0 top-0 py-2 px-4 w-full flex justify-between items-center">
-        <Link
+        {/* <Link
           className="f  hover:bg-red-500 p-2 rounded-full transition-all duration-200 cursor-pointer"
           href="tel:09096859314"
         >
           <MdCall className="fill-slate-50" size={25} />
-        </Link>
+        </Link> */}
 
-        <Logo setIsActive={setIsActive} />
+        {avatar && (
+          <Image
+            src={avatar}
+            alt="avatar"
+            width={100}
+            height={100}
+            className="rounded-full w-10 h-10"
+          />
+        )}
+
+        <Logo />
         <span
           onClick={() => setIsSideMenuShown((prev) => !prev)}
           className="hover:bg-red-500 p-2 rounded-full transition-all duration-200 cursor-pointer"
@@ -121,10 +144,8 @@ export default function TopNavigation() {
             {nav.map((navItem, index) => (
               <TopNavigationItem
                 items={navItem}
-                key={navItem.param}
-                isActiveLink={isActive === index}
+                key={navItem.address}
                 index={index}
-                setIsActive={setIsActive}
               />
             ))}
 
