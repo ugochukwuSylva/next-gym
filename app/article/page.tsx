@@ -1,9 +1,14 @@
-"use client";
+import { Metadata } from "next";
+import ArticlesPage from "../_components/ArticlesPage";
 
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
+export const metadata: Metadata = {
+  title: "Articles",
+};
 
-export default function Article() {
-  const { targetRef } = useFixedOnScroll();
-
-  return <div className="md:min-h-screen lg:h-screen" ref={targetRef}></div>;
+export default function Page() {
+  return (
+    <main>
+      <ArticlesPage />
+    </main>
+  );
 }

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.47.7",
     "framer-motion": "^11.5.4",
     "next": "14.2.8",
     "next-auth": "^5.0.0-beta.25",
@@ -16,7 +17,8 @@
     "react-countup": "^6.5.3",
     "react-dom": "^18",
     "react-intersection-observer": "^9.13.1",
-    "react-player": "^2.16.0"
+    "react-player": "^2.16.0",
+    "swiper": "^11.1.15"
   },
   "devDependencies": {
     "@types/node": "^20",

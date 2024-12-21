@@ -3,7 +3,6 @@
 import { useState } from "react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
 
 type Props = {
   headerText: number;
@@ -28,7 +27,7 @@ function AboutAchievementItem({ headerText, paragraphText, index }: Props) {
   return (
     <div
       ref={ref}
-      className="bounce border border-1 min-h-48 flex flex-col justify-center items-center gap-4 rounded-md  transition-all duration-200"
+      className="hover:bounce border border-1 border-stone-300 min-h-48 flex flex-col justify-center items-center gap-4 rounded-md  transition-all duration-200"
     >
       <h1 className="text-red-500 text-5xl font-semibold ">
         {inView && (
@@ -39,7 +38,7 @@ function AboutAchievementItem({ headerText, paragraphText, index }: Props) {
             delay={index / 3}
           />
         )}
-        {paragraphText === "Global Winners" && "+"}
+        {paragraphText === "Global Awards" && "+"}
       </h1>
       <p className="text-stone-500 text-xl">{paragraphText}</p>
     </div>

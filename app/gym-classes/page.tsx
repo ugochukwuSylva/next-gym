@@ -1,8 +1,14 @@
-"use client";
+import { Metadata } from "next";
+import GymClassesPage from "../_components/ClassesPage";
 
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
+export const metadata: Metadata = {
+  title: "Our Gym Classes",
+};
 
-export default function GymClasses() {
-  const { targetRef } = useFixedOnScroll();
-  return <div className="md:min-h-screen lg:h-screen" ref={targetRef}></div>;
+export default function page() {
+  return (
+    <main>
+      <GymClassesPage />
+    </main>
+  );
 }

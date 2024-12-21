@@ -1,22 +1,19 @@
-"use client";
+import { Metadata } from "next";
+import { auth } from "@/auth";
+import { Suspense } from "react";
+import JoinNowPage from "../_components/JoinNowPage";
 
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
-
-type Props = {
-  user: string | null | undefined;
+export const metadata: Metadata = {
+  title: "Join Now",
 };
 
-export default function JoinNowPage({ user }: Props) {
-  const { targetRef } = useFixedOnScroll();
-  const firstName = user?.split(" ")[0];
+export default async function page() {
+  const session = await auth();
+  const user = session?.user?.name;
 
   return (
-    <div className="md:min-h-screen lg:h-screen " ref={targetRef}>
-      <div className="absolute left-0 top-0 h-full w-full ">
-        <div className="h-full w-full pt-[7rem] md:pt-40">
-          <p className="">Welcome, {firstName}</p>
-        </div>
-      </div>
-    </div>
+    <Suspense fallback={<p>Please wait...</p>}>
+      <JoinNowPage user={user} />
+    </Suspense>
   );
 }

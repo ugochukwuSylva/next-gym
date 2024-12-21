@@ -73,10 +73,6 @@
     }
   }
 
-  .animate-mini {
-    animation: mini 0.1s linear infinite;
-  }
-
   @keyframes mini {
     0% {
       transform: translateY(1px);
@@ -140,7 +136,44 @@
       transform: rotate(360deg);
     }
   }
+
+  .bounce {
+    animation: bounce 0.5s linear;
+    transition: all 2s ease-in-out;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(-30px);
+    }
+    40% {
+      transform: translateY(0);
+    }
+    80% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  /* Custom style for swiper js */
+  .swiperContainer {
+    @apply h-full;
+  }
+
+  .swiperContainer .swiper-slide.swiper-slide-active {
+    @apply h-[37rem] opacity-100 transition-all duration-1000;
+  }
+
+  .swiperContainer .swiper-slide {
+    @apply opacity-30 translate-y-20 transition-all duration-1000;
+  }
 }
+
+/* .swiper-pagination-bullet .swiper-pagination-bullet-active {
+  @apply bg-red-500;
+} */
 
 ::selection {
   color: white;
