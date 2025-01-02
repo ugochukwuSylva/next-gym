@@ -16,7 +16,6 @@ function TopNavigationItem({ items, index }: Props) {
   return (
     <Link
       href={address}
-      // href={address}
       className={`flex  flex-col gap-1  justify-center md:text-center hover:pl-5 md:hover:px-4  text-stone-300 h-full px-1 md:px-4 transition-all duration-100 z-50  
     border-b border-stone-700/60 md:border md:border-transparent  md:hover:border-b-2  md:hover:border-b-red-500 md:hover:text-red-500 w-full 
     ${

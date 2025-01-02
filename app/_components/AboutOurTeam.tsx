@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import { getTrainers } from "../_lib/data-services";
-import InstructorsSlider from "./InstructorsSlider";
+import TrainersSlider from "./TrainersSlider";
 import SectionHeaders from "./SectionHeaders";
+import SpinnerMini from "./SpinnerMini";
 
 async function AboutOurTeam() {
   const trainers = await getTrainers();
@@ -16,8 +17,8 @@ async function AboutOurTeam() {
         />
       </div>
 
-      <Suspense fallback={<p>Please wait...</p>}>
-        <InstructorsSlider trainers={trainers} />
+      <Suspense fallback={<SpinnerMini />}>
+        <TrainersSlider trainers={trainers} />
       </Suspense>
     </div>
   );

@@ -7,7 +7,7 @@ export default function DoYouKnow() {
   return (
     <div className="flex flex-col  items-center lg:items-start gap-8">
       <div>
-        <h1 className="uppercase tracking-wider text-2xl md:text-lg font-bold text-stone-300 mb-8 md:mb-6 text-center">
+        <h1 className="uppercase tracking-wider text-2xl md:text-lg font-bold text-red-500 mb-8 md:mb-6 text-center">
           Do you know
         </h1>
         <p className="leading-8 text-center lg:text-start">

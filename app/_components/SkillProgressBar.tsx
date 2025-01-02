@@ -39,10 +39,10 @@ function SkillProgressBar({ skill, progress }: Props) {
           whileInView={{ width: progress }}
           transition={{ duration: 2, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="relative text-red-500 font-thin text-3xl  text-end h-full bg-gradient-to-r from-green-950 from-30% to-red-500 to-70% "
+          className="relative text-red-500 font-thin text-3xl text-end h-full bg-gradient-to-r from-green-950 from-30% to-red-500 to-70% "
         >
           {inView && (
-            <span className="absolute -translate-x-14 -translate-y-8">
+            <span className="absolute -translate-x-14 -translate-y-8 font-thin">
               <CountUp end={Number(progress.split("%")[0])} duration={5} />%
             </span>
           )}

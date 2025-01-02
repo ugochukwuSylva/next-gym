@@ -3,7 +3,7 @@ import GalleryContent2 from "./GalleryContent2";
 export default function FooterGallery2() {
   return (
     <div>
-      <h1 className="uppercase tracking-wider text-2xl md:text-lg font-bold text-stone-300 mb-8 md:mb-6 text-center">
+      <h1 className="uppercase tracking-wider text-2xl md:text-lg font-bold text-red-500 mb-8 md:mb-6 text-center">
         Gallery
       </h1>
 

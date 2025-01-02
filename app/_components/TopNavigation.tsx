@@ -30,20 +30,19 @@ export default function TopNavigation({ avatar }: Props) {
       text2: "Our team",
     },
     {
-      address: "/gym-classes",
-
+      address: "/training-classes",
       text1: "Classes",
       text2: "Training",
     },
     {
-      address: "/article",
-      text1: "Article",
-      text2: "Tutorials",
+      address: "/articles",
+      text1: "Articles",
+      text2: "Tutorial",
     },
     {
-      address: "/join-now",
-      text1: "Join now",
-      text2: "Membership",
+      address: "/dashboard",
+      text1: "Member",
+      text2: "Dashboard",
     },
   ];
 
@@ -52,10 +51,9 @@ export default function TopNavigation({ avatar }: Props) {
   const { isBottomPage } = useBottomPage();
 
   return (
-    // <div className="flex justify-center items-center w-full fixed mt-0 md:mt-14 z-40">
-    <div className="flex justify-center items-center w-full absolute  md:mt-14 z-40">
+    <div className="transition flex justify-center items-center w-full absolute  md:mt-14 z-40">
       <div
-        className={`w-full md:w-[98%] md:rounded-md transition-all ${
+        className={`w-full md:w-[95%] md:rounded-md transition-all ${
           isBottomPage
             ? "opacity-100 lg:opacity-0 visible lg:invisible h-24 lg:h-0 duration-300"
             : "opacity-100 lg:visible h-24 duration-500"

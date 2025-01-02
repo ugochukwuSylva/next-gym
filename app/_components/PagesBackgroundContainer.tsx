@@ -7,7 +7,7 @@ type Props = {
 
 function PagesBackgroundContainer({ imageUrl, altText }: Props) {
   return (
-    <div className="h-72 w-full  relative bg-black/50">
+    <div className="h-60 sm:h-72 w-full  relative bg-black/50">
       <Image
         src={imageUrl}
         alt={altText}

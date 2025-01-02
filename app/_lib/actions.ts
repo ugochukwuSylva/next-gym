@@ -3,7 +3,7 @@
 import { signIn, signOut } from "@/auth";
 
 export async function signInAction() {
-  return signIn("google", { redirectTo: "/join-now" });
+  return signIn("google", { redirectTo: "/training-classes" });
 }
 
 export async function signOutAction() {

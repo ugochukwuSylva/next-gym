@@ -5,7 +5,7 @@ import "./globals.css";
 import QuickContact from "./_components/QuickContact";
 import TopNavigation from "./_components/TopNavigation";
 import { auth } from "@/auth";
-// import Footer from "./_components/Footer";
+import Footer from "./_components/Footer";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -48,15 +48,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} min-h-screen overflow-x-hidden  w-full relative`}
-        // lg:h-[120vh]
+        className={`${roboto?.className}  min-h-screen overflow-x-hidden  w-full relative`}
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QuickContact />
         <TopNavigation avatar={avatar} />
-
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

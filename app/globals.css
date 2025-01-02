@@ -15,6 +15,16 @@
     @apply fixed mt-0 bg-black w-full;
   }
 
+  /* react-select */
+  .options-style {
+    @apply hover:bg-red-50 [&:not(:last-child)]:border-b;
+  }
+
+  /* react-select */
+  .select-container-style {
+    @apply flex justify-between items-center bg-white  placeholder:text-stone-400  uppercase tracking-wider;
+  }
+
   .translate-center {
     position: absolute;
     top: 60%;

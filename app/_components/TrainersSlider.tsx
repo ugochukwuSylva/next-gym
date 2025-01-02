@@ -18,7 +18,7 @@ type Props = {
   trainers: { fullName: string; specialty: string; image: string }[];
 };
 
-export function InstructorsSlider({ trainers }: Props) {
+export default function TrainersSlider({ trainers }: Props) {
   const btnLeft: object = {
     top: "40%",
     transform: "translate(-50%,-50%)",
@@ -76,18 +76,17 @@ export function InstructorsSlider({ trainers }: Props) {
       </div>
 
       <FaChevronLeft
-        className=" text-2xl cursor-pointer absolute left-10 text-red-500 z-20"
+        // className=" text-2xl cursor-pointer absolute left-10 text-red-500 z-20"
+        className="absolute left-10 text-[2.5rem] transition-all duration-500 rounded-full cursor-pointer   text-red-500 hover:text-white z-20 hover:bg-red-500/80 p-2"
         style={btnLeft}
-        onClick={prevSlide}
+        onClick={nextSlide}
       />
 
       <FaChevronRight
-        className="text-2xl cursor-pointer absolute right-10 z-20 text-red-500"
+        className="absolute right-10 text-[2.5rem] transition-all duration-500 rounded-full cursor-pointer   text-red-500 hover:text-white z-20 hover:bg-red-500/80 p-2"
         style={btnRight}
-        onClick={nextSlide}
+        onClick={prevSlide}
       />
     </div>
   );
 }
-
-export default InstructorsSlider;

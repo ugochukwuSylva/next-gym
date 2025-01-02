@@ -35,7 +35,7 @@ export default function SectionThreeImageCard({
         </p>
 
         <Link
-          href=""
+          href="/training-classes"
           className=" bg-red-500 px-6 py-2 rounded-md transition duration-300 hover:bg-white hover:text-red-500"
         >
           <p className="transition duration-500 group-hover:animate-mini">

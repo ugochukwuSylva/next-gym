@@ -7,7 +7,7 @@ export default function QuickContact() {
         <span className="  text-sm text-slate-300 cursor-pointer hover:text-red-500 transition-all duration-100">
           <a href="tel:09096859314">
             {" "}
-            Have any question? Call us:{" "}
+            Have any enquiry? Call us:{" "}
             <span className="font-semibold">+234 909 9685 9314</span>
           </a>
         </span>

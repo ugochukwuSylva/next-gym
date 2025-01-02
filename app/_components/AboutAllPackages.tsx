@@ -4,7 +4,7 @@ import { HiOutlineUser } from "react-icons/hi";
 
 function AboutAllPackages() {
   return (
-    <div className="min-h-screen relative  py-6 px-10 my-32 flex justify-start items-center">
+    <div className="min-h-screen relative mt-20 px-10 py-20 flex justify-start items-center">
       <Image
         src="/about-package-image-2.jpg"
         alt=""
@@ -21,7 +21,7 @@ function AboutAllPackages() {
         </h1>
 
         <Link
-          href="/join-now"
+          href="/training-classes"
           className="m-auto lg:m-0 translate-y-20  flex justify-between items-center w-36 *:text-white  bg-red-500  py-4 px-5 rounded-md transition-colors duration-500 hover:bg-white *:hover:text-red-500 "
         >
           <span className="text-xl transition-colors duration-500">
