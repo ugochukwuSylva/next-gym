@@ -9,7 +9,7 @@ import { useState } from "react";
 import QuickContactIcons from "./QuickContactIcons";
 // import Link from "next/link";
 import FooterText from "./FooterText";
-import Xbutton from "./CloseButton";
+import CloseButton from "./CloseButton";
 import { useBottomPage } from "../customHook/useBottomPage";
 import Image from "next/image";
 
@@ -136,7 +136,7 @@ export default function TopNavigation({ avatar }: Props) {
           } z-50 bg-transparent grid grid-cols-[5rem_1fr] sm:grid-cols-[10rem_1fr] absolute top-0 right-0 transition-all duration-500 h-[100vh] bg-slate-100 w-full`}
         >
           <div className="h-full bg-transparent/50 relative ">
-            <Xbutton />
+            <CloseButton />
           </div>
           <div className=" border-b border-stone-500/40 flex flex-col items-start px-1 md:px-2 h-full bg-gradient-to-b from-red-700 to-black/90 ">
             {nav.map((navItem, index) => (

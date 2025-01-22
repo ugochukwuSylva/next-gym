@@ -38,7 +38,7 @@ export default function ClassBooking({
 
         <Link
           href={`/training-classes/${id}`}
-          className="bg-red-500 w-full md:w-fit text-gray-200 px-6 py-3 border-none rounded-md hover:bg-stone-900 transition-all duration-300 mt-auto"
+          className="bg-red-500 w-full md:w-fit text-gray-200 px-6 py-3 border-none rounded-md hover:bg-stone-900 transition-all duration-300 mt-auto text-center"
         >
           Start Today{" "}
           <span className="font-semibold tracking-wide"> (${price})</span>

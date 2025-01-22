@@ -5,19 +5,23 @@ import { useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { BiSearchAlt2 } from "react-icons/bi";
 import OutsideClickHandler from "react-outside-click-handler";
+import parsePhoneNumberFromString from "libphonenumber-js";
 
 type Props = {
   countries: {
     flags: { png: string };
     name: { common: string };
     idd: { root: string; suffixes: [string] };
+    flag: string; //This gives the corresponding country code e.g NG for Nigeria
   }[];
 };
+
 export default function PhoneContact({ countries }: Props) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
-  const [preFixNumber, setPreFixNumber] = useState<string | number>();
+  const [preFixNumber, setPreFixNumber] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const sortedCountries = countries
     .slice()
@@ -27,6 +31,29 @@ export default function PhoneContact({ countries }: Props) {
     (country) => country?.name?.common === selectedCountry
   )?.flags.png;
 
+  const countryCode: any = sortedCountries.find(
+    (country) => country?.name?.common === selectedCountry
+  )?.flag;
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const numberRegex = /^[+]?[0-9]*$/;
+    if (numberRegex.test(e.target.value)) {
+      setPreFixNumber(e.target.value);
+    }
+  }
+
+  function handleOnBlur() {
+    const isPhoneNumberValidated = parsePhoneNumberFromString(
+      String(preFixNumber),
+      countryCode
+    );
+    if (isPhoneNumberValidated && isPhoneNumberValidated.isValid()) {
+      setErrorMessage("");
+    } else {
+      setErrorMessage("Invalid phone number");
+    }
+  }
+
   return (
     <OutsideClickHandler onOutsideClick={() => setIsClicked(false)}>
       <div
@@ -35,12 +62,16 @@ export default function PhoneContact({ countries }: Props) {
       >
         <div className="relative w-full flex justify-between items-center">
           <span className="absolute left-3  text-red-500 scale-125">☎</span>
+
           <input
             type="tel"
             value={preFixNumber}
-            onChange={(e) => setPreFixNumber(e.target.value)}
+            onChange={handleChange}
+            onBlur={handleOnBlur}
             placeholder="Phone number"
-            className="border-none outline-none pl-10 uppercase tracking-wider placeholder:text-stone-600 md:placeholder:text-stone-400 cursor-pointer bg-transparent"
+            className={`border-none outline-none pl-10 uppercase tracking-wider placeholder:text-stone-600 md:placeholder:text-stone-400 ${
+              preFixNumber ? "placeholder:opacity-0" : "placeholder:opacity-100"
+            } cursor-pointer bg-transparent`}
           />
 
           {selectedFlag && (
@@ -137,6 +168,9 @@ export default function PhoneContact({ countries }: Props) {
           </div>
         </div>
       </div>
+      {errorMessage.length > 0 && (
+        <p className="text-red-500 text-sm">{errorMessage}</p>
+      )}
     </OutsideClickHandler>
   );
 }

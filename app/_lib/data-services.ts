@@ -58,10 +58,19 @@ export async function getTrainingClassById(id: string) {
   return data;
 }
 
+export async function getArticles() {
+  const { data, error } = await supabase.from("articles").select("*");
+  if (error) {
+    throw new Error("Could not fetch Articles");
+  }
+
+  return data;
+}
+
 export async function getCountries() {
   try {
     const response = await fetch(
-      "https://restcountries.com/v3.1/all?fields=name,flags,idd"
+      "https://restcountries.com/v3.1/all?fields=name,flags,flag,idd"
     );
     if (!response.ok) throw new Error("Failed to get country 😔");
     const data = await response.json();
@@ -71,5 +80,3 @@ export async function getCountries() {
     throw new Error();
   }
 }
-
-// https://restcountries.com/v3.1/all?fields=name,flags,idd

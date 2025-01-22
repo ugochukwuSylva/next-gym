@@ -1,4 +1,6 @@
 import Image from "next/image";
+import CloseButton from "./CloseButton";
+import { useRouter } from "next/navigation";
 
 type Props = {
   isBlured: boolean;
@@ -6,12 +8,16 @@ type Props = {
 };
 
 export default function BookingForm({ isBlured, children }: Props) {
+  const router = useRouter();
+
   return (
     <div
       className={`flex justify-center items-center fixed w-full left-0 top-0 z-50 bg-black/50 backdrop-blur-sm h-screen transition-all duration-700 ${
         isBlured ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
+      <CloseButton close={() => router.back()} />
+
       <form className="flex justify-end items-center relative min-h-[30rem] w-[95%] sm:w-[80%] xl:w-[60rem] rounded-md shadow-black overflow-hiddens px-0 py-6 lg:p-10   md:bg-gradient-to-r  lg:bg-gradient-120 from-transparent  to-white/70 lg:from-40% lg:to-40% from-50% to-50%">
         <div className=" w-full md:w-[50%] lg:w-80 flex flex-col gap-6 px-8 lg:px-0 lg:pr-4">
           <input
