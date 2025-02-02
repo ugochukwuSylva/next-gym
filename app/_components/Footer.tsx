@@ -34,8 +34,8 @@ export default function Footer() {
         <div className="border-t border-stone-800 w-full flex flex-col md:flex-row py-5 text-center md:text-start md:justify-between items-center z-10 *:text-stone-400 *:text-sm *:not-italic">
           <FooterText />
 
-          <div className="flex items-center  text-sm w-full justify-center md:justify-end gap-3">
-            <span className="cursor-pointer   p-1  hover:text-red-500 transition-all duration-300">
+          <div className="flex items-center text-sm w-full justify-center md:justify-end gap-3">
+            <span className="cursor-pointer p-1 hover:text-red-500 transition-all duration-300">
               {" "}
               Privacy Policy
             </span>

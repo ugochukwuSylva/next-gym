@@ -3,7 +3,7 @@ import advertBg from "/public/advert-bg.jpg";
 
 export default function ArticleAds() {
   return (
-    <div className="p-10 ">
+    <div className="p-0 sm:p-10 flex flex-col gap-6 lg:items-start items-center">
       <h1 className="pb-4 w-fit border-b-2 border-b-red-500 text-2xl font-black text-stone-700">
         Ads
       </h1>

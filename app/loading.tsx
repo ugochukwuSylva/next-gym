@@ -1,8 +1,9 @@
-export default function Spinner() {
+import Spinner from "./_components/Spinner";
+
+export default function LoadingSpinner() {
   return (
-    <div className="absolute top-[40%] left-[40%] flex flex-col justify-center items-center gap-3">
-      <span className="loader"></span>
-      <p className="uppercase">Loading...</p>
+    <div className="fixed left-0  top-0 w-full h-screen bg-black/50 backdrop-blur-md z-50 flex justify-center items-center *:text-white">
+      <Spinner />
     </div>
   );
 }

@@ -17,12 +17,12 @@ export default function ArticleTags() {
   ];
 
   return (
-    <div className="p-10 flex flex-col gap-10 border-b border-b-stone-200">
+    <div className="p-3 sm:p-10 flex flex-col lg:items-start items-center gap-10 border-b border-b-stone-200">
       <h1 className="pb-4 w-fit border-b-2 border-b-red-500 text-2xl font-black text-stone-700">
         Tags Cloud
       </h1>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex lg:justify-start justify-center flex-wrap gap-2">
         {tags.map((tag) => (
           <span className="cursor-pointer hover:bg-red-500 transition-all duration-300 hover:text-white p-3 border border-1 text-sm rounded-md">
             {tag}

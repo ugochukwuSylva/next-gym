@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MdArrowRight } from "react-icons/md";
-import SpinnerMini from "./SpinnerMini";
 
 type Props = {
   title: string;
@@ -10,6 +9,7 @@ type Props = {
   date: string;
   image: string;
   writeup: string;
+  id: string;
 };
 
 export default function ArticleMainBox({
@@ -19,25 +19,23 @@ export default function ArticleMainBox({
   date,
   image,
   writeup,
+  id,
 }: Props) {
   return (
-    <div className="p-10 grid grid-cols-[25rem_1fr] gap-8 bg-stone-100 rounded-md border-b-4 border-red-100 hover:border-red-500 transition-all duration-300">
+    <div className="p-6 sm:p-10 flex flex-col-reverse md:grid md:grid-cols-[2fr_1fr] gap-8 bg-stone-100 rounded-md border-b-4 border-red-100 hover:border-red-500 transition-all duration-300">
       <div className="flex flex-col gap-4">
         <h1 className="font-black  text-2xl text-stone-600 hover:text-red-500 transition-all duration-300 cursor-pointer">
           {title}
         </h1>
+
         <div className="grid grid-cols-[3rem_1fr] gap-3">
           <div className="relative">
-            {authorAvatar ? (
-              <Image
-                src={authorAvatar}
-                alt="avatar-image"
-                fill
-                className="object-cover bg-center"
-              />
-            ) : (
-              <SpinnerMini />
-            )}
+            <Image
+              src={authorAvatar}
+              alt="avatar-image"
+              fill
+              className="object-cover bg-center"
+            />
           </div>
 
           <div className="flex flex-col *:text-sm">
@@ -51,7 +49,7 @@ export default function ArticleMainBox({
         </p>
 
         <Link
-          href=""
+          href={`articles/${id}`}
           className="flex justify-center items-center w-32 *:text-white  bg-red-500 mt-5 p-1 rounded-md transition-colors duration-300 hover:bg-stone-800 *:hover:text-white"
         >
           <MdArrowRight size={30} />
@@ -60,17 +58,13 @@ export default function ArticleMainBox({
         </Link>
       </div>
       {/*  */}
-      <div className="relative rounded-md overflow-hidden">
-        {image ? (
-          <Image
-            src={image}
-            alt="workout image"
-            fill
-            className="object-cover bg-center"
-          />
-        ) : (
-          <SpinnerMini />
-        )}
+      <div className="relative rounded-md overflow-hidden h-64 md:h-auto min-w-40">
+        <Image
+          src={image}
+          alt="workout image"
+          fill
+          className="object-cover bg-center"
+        />
       </div>
     </div>
   );

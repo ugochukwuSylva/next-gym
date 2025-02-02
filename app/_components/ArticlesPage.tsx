@@ -15,6 +15,7 @@ type Props = {
     writeup: string;
     date: string;
     image: string;
+    id: string;
   }[];
 };
 
@@ -52,7 +53,7 @@ export default function ArticlesPage({ articles }: Props) {
       />
 
       <div className="bg-gradient-to-b from-white to-red from-55% to-55% pb-6 lg:pb-[110vh]">
-        <div className="grid grid-cols-[50rem_1fr] gap-12 py-20 px-10 bg-white">
+        <div className="flex flex-col lg:grid lg:grid-cols-[3fr_1fr]  gap-10 py-20 px-3 sm:px-10 bg-white">
           <main className="flex flex-col gap-10">
             {articlesPages.map((article) => (
               <ArticleMainBox
@@ -62,6 +63,7 @@ export default function ArticlesPage({ articles }: Props) {
                 writeup={article.writeup}
                 date={article.date}
                 image={article.image}
+                id={article.id}
               />
             ))}
 

@@ -9,23 +9,23 @@ export default function FooterGallery1() {
 
       <GalleryContent1
         imagePath="/gallery-image-1.jpg"
-        heading="A place of Silence"
-        subHeading="10 June 2024"
+        heading="The Grind Never Sleeps"
+        subHeading="10 June 2025"
       />
       <GalleryContent1
         imagePath="/gallery-image-2.jpg"
-        heading="A place of Silence"
-        subHeading="10 June 2024"
+        heading="Embrace the Challenge"
+        subHeading="10 June 2025"
       />
       <GalleryContent1
         imagePath="/gallery-image-3.jpg"
-        heading="A place of Silence"
-        subHeading="10 June 2024"
+        heading="Strength in Solitude"
+        subHeading="10 June 2025"
       />
       <GalleryContent1
         imagePath="/gallery-image-4.jpg"
-        heading="A place of Silence"
-        subHeading="10 June 2024"
+        heading="Rise With Every Set"
+        subHeading="10 June 2025"
       />
     </div>
   );

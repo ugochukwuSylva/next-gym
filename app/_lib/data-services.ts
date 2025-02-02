@@ -35,6 +35,20 @@ export async function getTrainerById(id: string) {
   return data;
 }
 
+export async function getArticleById(id: string) {
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    notFound();
+  }
+
+  return data;
+}
+
 export async function getTrainingClasses() {
   const { data, error } = await supabase.from("training-classes").select("*");
 
