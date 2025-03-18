@@ -10,7 +10,7 @@ type Props = {
   prevPage: () => void;
 };
 
-export default function ArticleButtons({
+export default function PaginationButtons({
   currentPage,
   lastPage,
   totalPages,

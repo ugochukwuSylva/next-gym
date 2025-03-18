@@ -81,6 +81,30 @@ export async function getArticles() {
   return data;
 }
 
+export async function getProducts() {
+  const { data, error } = await supabase.from("products").select("*");
+
+  if (error) {
+    throw new Error("Could not fetch products");
+  }
+
+  return data;
+}
+
+export async function getProductById(id: string) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    notFound();
+  }
+
+  return data;
+}
+
 export async function getCountries() {
   try {
     const response = await fetch(

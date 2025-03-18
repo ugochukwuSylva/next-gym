@@ -12,12 +12,16 @@ import FooterText from "./FooterText";
 import CloseButton from "./CloseButton";
 import { useBottomPage } from "../customHook/useBottomPage";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   avatar: string | undefined | null;
 };
 
 export default function TopNavigation({ avatar }: Props) {
+  const searchParams = useSearchParams();
+  const sort = searchParams?.get("sort") ?? "all";
+
   const nav = [
     {
       address: "/",
@@ -43,6 +47,11 @@ export default function TopNavigation({ avatar }: Props) {
       address: "/dashboard",
       text1: "Member",
       text2: "Dashboard",
+    },
+    {
+      address: `/shopping?sort=${sort}`,
+      text1: "Shopping",
+      text2: "Cart",
     },
   ];
 
@@ -83,7 +92,11 @@ export default function TopNavigation({ avatar }: Props) {
           />
         )}
 
-        <div className="group rounded-md  cursor-pointer text-red-600 hidden md:block  bg-red-600/20 ">
+        <div
+          className={`group rounded-md  cursor-pointer text-red-600  ${
+            avatar ? "hidden lg:block" : ""
+          }  bg-red-600/20 `}
+        >
           <div className="rounded-md group-hover:!bg-red-500 group-hover:!text-white  flex  justify-around items-center   transition-colors duration-200 tracking-wide p-4   lg:px-10 lg:py-1 gap-5">
             <FaLocationDot
               className="transition-colors duration-300"

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import SectionHeaders from "./SectionHeaders";
 import BookingForm from "./BookingForm";
+import BackButton from "./BackButton";
 
 type Props = {
   selectedClass: {
@@ -78,19 +78,6 @@ function BookingButton({setIsClickedBooking}:ButtonProps) {
       className=" bg-red-500 w-full md:w-fit text-gray-200 px-6 py-3 border-none rounded-md hover:bg-stone-900 transition-all duration-300"
     >
       Book Now
-    </button>
-  );
-}
-
-function BackButton() {
-  const router = useRouter();
-
-  return (
-    <button
-      onClick={() => router.back()}
-      className="group  w-full md:w-fit text-stone-700 border border-1 hover:ring-1 hover:ring-black/30 border-stone-300 px-6 py-3 rounded-md  transition-all duration-300"
-    >
-      &larr; Back
     </button>
   );
 }

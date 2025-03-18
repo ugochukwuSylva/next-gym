@@ -17,7 +17,7 @@ export default function SectionThreeImageList() {
       />
       <SectionThreeImageCard
         text1="Professional"
-        text2="ABS Workouts"
+        text2="Abs Workouts"
         text3="Professional"
         image="/sectionThreeImages-3.jpg"
       />

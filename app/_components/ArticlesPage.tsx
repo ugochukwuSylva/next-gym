@@ -2,10 +2,10 @@
 
 import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
-import ArticleButtons from "./ArticleButtons";
-import { useState } from "react";
 import ArticleMainBox from "./ArticleMainBox";
 import ArticleSideBox from "./ArticleSideBox";
+import PaginationButtons from "./PaginationButtons";
+import usePagination from "../customHook/usePagination";
 
 type Props = {
   articles: {
@@ -21,29 +21,18 @@ type Props = {
 
 export default function ArticlesPage({ articles }: Props) {
   const { targetRef } = useFixedOnScroll();
+  const VIEWS_PER_PAGE = 2;
 
-  const [currentPage, setCurrentPage] = useState<number>(0);
-
-  const pagesPerView = 2;
-  const lastPage = articles.length;
-  const totalPages = Math.ceil(lastPage / pagesPerView);
-  const articlesPages = articles.slice(
-    currentPage * pagesPerView,
-    currentPage * pagesPerView + pagesPerView
-  );
-
-  let pageNumber;
-  if (currentPage === 0) pageNumber = pagesPerView;
-  if (currentPage > 0) pageNumber = pagesPerView * currentPage + pagesPerView;
-  if (currentPage === totalPages - 1) pageNumber = lastPage;
-
-  function nextPage() {
-    setCurrentPage((next) => (next === totalPages ? next : next + 1));
-  }
-
-  function prevPage() {
-    setCurrentPage((prev) => (prev === 0 ? prev : prev - 1));
-  }
+  const {
+    arrContents,
+    totalPages,
+    currentPage,
+    lastPage,
+    pageNumber,
+    viewsPerPage,
+    nextPage,
+    prevPage,
+  } = usePagination(articles, VIEWS_PER_PAGE, articles.length);
 
   return (
     <div className="md:min-h-screen lg:h-screen" ref={targetRef}>
@@ -55,8 +44,9 @@ export default function ArticlesPage({ articles }: Props) {
       <div className="bg-gradient-to-b from-white to-red from-55% to-55% pb-6 lg:pb-[110vh]">
         <div className="flex flex-col lg:grid lg:grid-cols-[3fr_1fr]  gap-10 py-20 px-3 sm:px-10 bg-white">
           <main className="flex flex-col gap-10">
-            {articlesPages.map((article) => (
+            {arrContents.map((article: any) => (
               <ArticleMainBox
+                key={article.title}
                 title={article.title}
                 authorName={article.authorName}
                 authorAvatar={article.authorAvatar}
@@ -67,8 +57,8 @@ export default function ArticlesPage({ articles }: Props) {
               />
             ))}
 
-            {pagesPerView !== lastPage && (
-              <ArticleButtons
+            {viewsPerPage !== lastPage && (
+              <PaginationButtons
                 nextPage={nextPage}
                 prevPage={prevPage}
                 currentPage={currentPage}
