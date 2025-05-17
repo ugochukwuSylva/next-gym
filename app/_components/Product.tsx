@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { RiShoppingCartLine } from "react-icons/ri";
+import { addToCart } from "../_lib/actions";
 
 type Props = {
   productName: string;
@@ -8,15 +11,27 @@ type Props = {
   oldPrice: number;
   productImage: string;
   id: string;
+  productQuantity: number;
+  totalPrice: number;
 };
-
 export default function Product({
   productName,
   productPrice,
   oldPrice,
   productImage,
   id,
+  totalPrice,
+  productQuantity,
 }: Props) {
+  const newProduct = {
+    productName,
+    productPrice,
+    productImage,
+    id,
+    totalPrice,
+    productQuantity,
+  };
+
   return (
     <div className="relative h-96 w-72 rounded-lg overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-shadow duration-300 m-auto">
       <Link href={`/shopping/product/${id}`}>

@@ -105,6 +105,31 @@ export async function getProductById(id: string) {
   return data;
 }
 
+export async function getCart() {
+  const { data, error } = await supabase.from("cart").select("*");
+
+  if (error) {
+    throw new Error("Could not fetch data");
+  }
+
+  return data;
+}
+
+export async function getMember(email: string | null | undefined) {
+  const { data, error } = await supabase
+    .from("members")
+    .select("*")
+    .eq("email", email)
+    .single();
+
+  if (error && error.code !== "PGRST116") {
+    throw new Error("Could not find member");
+  }
+
+  return data;
+}
+
+//
 export async function getCountries() {
   try {
     const response = await fetch(

@@ -8,7 +8,7 @@ type Props = {
   productImage: string;
 };
 
-export default function ProductDetails({
+export default async function ProductDetails({
   id,
   productImage,
   productName,
@@ -44,7 +44,7 @@ export default function ProductDetails({
         </div>
       </div>
 
-      <div className=" mt-2">
+      <div className=" mt-2 w-full">
         <ShareButtonContainer
           id={id}
           productImage={productImage}

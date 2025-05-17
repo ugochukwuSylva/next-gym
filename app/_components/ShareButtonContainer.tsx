@@ -3,9 +3,9 @@ import {
   TwitterShareButton,
   FacebookShareButton,
   LinkedinShareButton,
-  RedditShareButton,
+  // RedditShareButton,
   PinterestShareButton,
-  WhatsappShareButton,
+  // WhatsappShareButton,
   EmailShareButton,
 } from "react-share";
 
@@ -15,7 +15,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaPinterest } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { SiWhatsapp } from "react-icons/si";
+// import { SiWhatsapp } from "react-icons/si";
 import { FaLinkedinIn } from "react-icons/fa6";
 
 type Props = {
@@ -94,7 +94,7 @@ export default function ShareButtonContainer({
           </EmailShareButton>
         </ShareButton>
 
-        <ShareButton title="Share on WhatsApp" color="bg-green-500">
+        {/* <ShareButton title="Share on WhatsApp" color="bg-green-500">
           <WhatsappShareButton
             url={url}
             title={`Checkout this amazing product: ${productName}`}
@@ -104,7 +104,7 @@ export default function ShareButtonContainer({
               className="group-hover:text-white text-stone-600"
             />
           </WhatsappShareButton>
-        </ShareButton>
+        </ShareButton> */}
 
         <ShareButton title="Share on LinkedIn" color="bg-blue-900">
           <LinkedinShareButton

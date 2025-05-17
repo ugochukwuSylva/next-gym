@@ -32,8 +32,8 @@ export default function SelectedProduct({ product }: Props) {
       />
 
       <div className="bg-gradient-to-b from-white to-red from-55% to-55% pb-6 lg:pb-[110vh]">
-        <div className="grid grid-cols-2 py-20 px-10 gap-16">
-          <div className="relative h-4/5 overflow-hidden rounded-md">
+        <div className="grid grid-cols-1 md:grid-cols-2 py-20 px-4 md:px-10 gap-12 lg:gap-16 ">
+          <div className="relative h-96 md:h-4/5 overflow-hidden rounded-md">
             <Image
               src={productImage}
               fill
@@ -43,7 +43,7 @@ export default function SelectedProduct({ product }: Props) {
           </div>
 
           <div className="">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3 md:gap-6">
               <p className="text-4xl text-stone-800 font-black">
                 {productName}
               </p>
@@ -58,7 +58,7 @@ export default function SelectedProduct({ product }: Props) {
                 <div className="flex gap-2 mt-4">
                   <Link
                     href=""
-                    className="p-3 rounded-md w-56  bg-red-500 text-center flex justify-center items-center text-stone-200 hover:bg-stone-800  transition-colors duration-300"
+                    className="p-3 rounded-md w-52 sm:w-56  bg-red-500 text-center flex justify-center items-center text-stone-200 hover:bg-stone-800  transition-colors duration-300"
                   >
                     <RiShoppingCartLine size={25} />{" "}
                     <span className="ml-2 text-lg font-bold">Add to cart</span>

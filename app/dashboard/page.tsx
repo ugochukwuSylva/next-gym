@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 
 export default async function page() {
   const session = await auth();
+  // console.log(session);
   const user = session?.user?.name;
 
   return <DashboardPage user={user} />;

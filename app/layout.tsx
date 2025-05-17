@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 // import localFont from "next/font/local";
 import { Roboto, Viga } from "next/font/google";
 import "./globals.css";
+import { auth } from "@/auth";
+import { Toaster } from "react-hot-toast";
+
 import QuickContact from "./_components/QuickContact";
 import TopNavigation from "./_components/TopNavigation";
-import { auth } from "@/auth";
 import Footer from "./_components/Footer";
 
 const roboto = Roboto({
@@ -55,6 +57,26 @@ export default async function RootLayout({
         <TopNavigation avatar={avatar} />
         {children}
         <Footer />
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: "8px" }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+
+            error: { duration: 5000 },
+
+            style: {
+              fontSize: "16px",
+              maxWidth: "500px",
+              padding: "16px 24px",
+              backgroundColor: "var(--color-grey-0)",
+              color: "var(--color-grey-700)",
+            },
+          }}
+        />
       </body>
     </html>
   );
