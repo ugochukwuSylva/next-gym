@@ -13,9 +13,9 @@ type Props = {
     idd: { root: string; suffixes: [string] };
   }[];
 };
-export default function PhoneContact({ countries }: Props) {
+export default function SelectCountry({ countries }: Props) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [search, setSearch] = useState<string>("");
 
   const sortedCountries = countries
@@ -34,8 +34,15 @@ export default function PhoneContact({ countries }: Props) {
       >
         <div className="relative w-full flex justify-between items-center ">
           <span className="absolute left-3  text-red-500 scale-125">🌍</span>
-          <span className="px-4  tracking-wider uppercase pl-10 text-stone-700">
+          <span className="relative px-4  tracking-wider uppercase pl-10 text-stone-700">
             {selectedCountry ? selectedCountry : "Nationality"}
+            <input
+              className="opacity-0 absolute left-0"
+              type="text"
+              required
+              name="country"
+              value={selectedCountry}
+            />
           </span>
 
           {selectedFlag && (
@@ -59,8 +66,6 @@ export default function PhoneContact({ countries }: Props) {
               isClicked ? "h-80 opacity-100 visible" : "h-0 opacity-0 invisible"
             }`}
           >
-            {/* search box */}
-            {/* <div className=""> */}
             <div
               className=" relative w-full"
               onClick={() => setIsClicked(false)}
@@ -72,7 +77,6 @@ export default function PhoneContact({ countries }: Props) {
               />
               <BiSearchAlt2 className="absolute left-1 top-1.5 text-2xl text-stone-600" />
             </div>
-            {/* </div> */}
 
             {/* list of countries */}
             <div className="px-2 py-1 bg-white">

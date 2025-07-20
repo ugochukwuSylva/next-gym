@@ -4,12 +4,11 @@ import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 
 type Props = {
-  user: string | null | undefined;
+  children: React.ReactNode;
 };
 
-export default function DashboardPage({ user }: Props) {
+export default function Container({ children }: Props) {
   const { targetRef } = useFixedOnScroll();
-  const firstName = user?.split(" ")[0];
 
   return (
     <div className="md:min-h-screen lg:h-screen " ref={targetRef}>
@@ -17,8 +16,9 @@ export default function DashboardPage({ user }: Props) {
         imageUrl="/dashboard-bg.jpg"
         altText="background image"
       />
-
-      <p className="">Welcome, {firstName}</p>
+      <div className=" bg-gradient-to-b from-white to-transparent from-55% to-55% pb-6 lg:pb-[110vh]">
+        {children}
+      </div>
     </div>
   );
 }

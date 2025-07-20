@@ -26,7 +26,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/_lib/supabase.ts"
+    "app/_lib/supabase.ts",
+    "app/dashboard/bookings"
   ],
   "exclude": ["node_modules"]
 }

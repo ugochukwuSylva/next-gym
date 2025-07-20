@@ -68,6 +68,8 @@ export default function PhoneContact({ countries }: Props) {
             value={preFixNumber}
             onChange={handleChange}
             onBlur={handleOnBlur}
+            required
+            name="phoneNumber"
             placeholder="Phone number"
             className={`border-none outline-none pl-10 uppercase tracking-wider placeholder:text-stone-600 md:placeholder:text-stone-400 ${
               preFixNumber ? "placeholder:opacity-0" : "placeholder:opacity-100"

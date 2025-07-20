@@ -21,9 +21,26 @@ export async function getTrainers() {
   return data;
 }
 
+export async function getBookings(memberId: string) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select(
+      "*, trainingClasses(price, image, workoutType, stripePriceId), members(email, fullName)"
+    )
+    .eq("memberId", memberId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    // throw new Error(error.message);
+    throw new Error("Could not fetch data");
+  }
+
+  return data;
+}
+
 export async function getTrainerById(id: string) {
   const { data, error } = await supabase
-    .from("training-classes")
+    .from("trainingClasses")
     .select("*")
     .eq("id", id)
     .single();
@@ -50,7 +67,7 @@ export async function getArticleById(id: string) {
 }
 
 export async function getTrainingClasses() {
-  const { data, error } = await supabase.from("training-classes").select("*");
+  const { data, error } = await supabase.from("trainingClasses").select("*");
 
   if (error) {
     throw new Error("Could not fetch data");
@@ -60,7 +77,7 @@ export async function getTrainingClasses() {
 
 export async function getTrainingClassById(id: string) {
   const { data, error } = await supabase
-    .from("training-classes")
+    .from("trainingClasses")
     .select("*")
     .eq("id", id)
     .single();
@@ -141,5 +158,37 @@ export async function getCountries() {
     return data;
   } catch {
     throw new Error();
+  }
+}
+
+export async function getPaymentDetails(email: string) {
+  const { error, data } = await supabase
+    .from("payments")
+    .select("*")
+    .eq("email", email)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error("Could not get payment details");
+  }
+
+  return data;
+}
+
+export async function handleCheckout(priceId: string, email: string) {
+  const res = await fetch("/api/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ priceId, email }),
+  });
+  const data = await res.json();
+  console.log(data);
+
+  if (data?.url) {
+    window.location.href = data.url; // browser redirect
+  } else {
+    console.error("❌ No checkout session URL returned", data);
   }
 }

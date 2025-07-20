@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  .dashboardItems {
+    @apply grid grid-cols-[2rem_1fr] justify-center items-center  p-3  rounded-sm hover:shadow-md *:hover:text-red-600 hover:bg-red-50 transition-all duration-300 mb-3 [&:not(:last-child)]:border-b hover:[&:not(:last-child)]:border-b-transparent last:mt-auto;
+  }
+
   .animated-social {
     @apply text-xs text-center mt-3 -ml-5 capitalize bg-red-500 p-1 rounded-md fixed transition-all duration-200 z-50  opacity-0 scale-0;
   }

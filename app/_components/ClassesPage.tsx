@@ -37,7 +37,7 @@ export default function ClassesPage({ classes }: Props) {
         </div>
       </div>
 
-      <div className=" bg-gradient-to-b from-white to-transparent from-55% to-55% pb-6 lg:pb-[110vh] ">
+      <div className=" bg-gradient-to-b from-white to-transparent from-55% to-55% pb-6 lg:pb-[110vh]">
         <div className="px-3 md:px-20 bg-white">
           <div className="grid grid-cols-1 lg:grid-cols-2  pb-16 gap-6">
             {classes.map((el) => (

@@ -8,7 +8,6 @@ export const metadata = {
 export default async function page() {
   const cart = await getCart();
 
-  console.log(cart);
   return (
     <div>
       <CartPage cart={cart} />

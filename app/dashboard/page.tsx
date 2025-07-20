@@ -1,15 +1,7 @@
-import { Metadata } from "next";
-import { auth } from "@/auth";
-import DashboardPage from "../_components/DashBoardPage";
-
-export const metadata: Metadata = {
+export const metadata = {
   title: "Dashboard",
 };
 
 export default async function page() {
-  const session = await auth();
-  // console.log(session);
-  const user = session?.user?.name;
-
-  return <DashboardPage user={user} />;
+  return <div>This is home page</div>;
 }

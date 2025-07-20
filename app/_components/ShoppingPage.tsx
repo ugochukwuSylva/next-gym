@@ -117,6 +117,8 @@ export default function ShoppingPage({ products }: Props) {
                 productPrice={product.productPrice}
                 oldPrice={product.oldPrice}
                 id={product.id}
+                productQuantity={0}
+                totalPrice={0}
               />
             ))}
           </div>

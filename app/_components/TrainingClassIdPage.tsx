@@ -14,7 +14,9 @@ type Props = {
     workoutDescription: string;
     image: string;
     price: string;
+    id: number;
   };
+  user: string;
 
   children: React.ReactNode;
 };
@@ -26,11 +28,12 @@ type ButtonProps = {
 export default function TrainingClassIdPage({
   selectedClass,
   children,
+  user,
 }: Props) {
   const [isClickedBooking, setIsClickedBooking] = useState<boolean>(false);
   const { targetRef } = useFixedOnScroll();
 
-  const { workoutType, workoutDescription, image } = selectedClass;
+  const { workoutType, workoutDescription, image, id } = selectedClass;
   const [text3, text4] = workoutType.split(" ");
 
   return (
@@ -65,7 +68,9 @@ export default function TrainingClassIdPage({
           </div>
         </div>
       </div>
-      <BookingForm isBlured={isClickedBooking}>{children}</BookingForm>
+      <BookingForm user={user} id={id} isBlured={isClickedBooking}>
+        {children}
+      </BookingForm>
     </div>
   );
 }
