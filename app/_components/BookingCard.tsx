@@ -1,15 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { formatDate } from "../_utils/formatDate";
 import ActionButton from "./ActionButton";
-
 import CheckoutButton from "./CheckoutButton";
+import { deleteBooking } from "../_lib/actions";
+import { useTransition } from "react";
+import SpinnerMini from "./SpinnerMini";
+import toast from "react-hot-toast";
 
 type Props = {
   booking: {
+    id: number;
     created_at: string;
     instructor: string;
+    comment: string;
     status: string;
     trainingClasses: {
       image: string;
@@ -17,11 +24,27 @@ type Props = {
       stripePriceId: string;
       workoutType: string;
     };
-    members: { email: string };
+    members: { email: string; fullName: string };
   };
 };
 
 export default function BookingCard({ booking }: Props) {
+  const [isPending, setTransition] = useTransition();
+
+  async function handleDelete(id: number) {
+    (function () {
+      setTransition(async () => {
+        const deleteSelectedBooking = await deleteBooking(id);
+
+        if (deleteSelectedBooking.success) {
+          toast.success(deleteSelectedBooking.message);
+        } else {
+          toast.error(deleteSelectedBooking.message);
+        }
+      });
+    })();
+  }
+
   return (
     <div className="w-full mb-3 pb-2 border-b border-b-stone-200 hover:bg-stone-100 hover:shadow-lg transition-all duration-200">
       <div className="grid grid-cols-[18rem_1fr_1fr_1fr_1fr_1fr] justify-center items-center">
@@ -61,7 +84,9 @@ export default function BookingCard({ booking }: Props) {
           {booking.status === "unconfirmed" ? (
             <CheckoutButton
               priceId={booking.trainingClasses.stripePriceId}
+              bookingId={booking.id}
               email={booking.members.email}
+              pending={isPending}
             />
           ) : (
             <div>Paid</div>
@@ -69,13 +94,23 @@ export default function BookingCard({ booking }: Props) {
         </div>
         <div className=" flex justify-center items-center gap-2">
           {booking.status === "unconfirmed" && (
-            <ActionButton action="">
+            <ActionButton
+              actionType="update"
+              id={booking.id}
+              user={booking.members.fullName}
+              comment={booking.comment}
+            >
               <TbEdit />
             </ActionButton>
           )}
 
-          <ActionButton action="">
-            <RiDeleteBin6Line />
+          <ActionButton
+            action={handleDelete}
+            actionType="delete"
+            id={booking.id}
+            isPending={isPending}
+          >
+            {isPending ? <SpinnerMini /> : <RiDeleteBin6Line />}
           </ActionButton>
         </div>
       </div>

@@ -12,9 +12,15 @@ type Props = {
     name: { common: string };
     idd: { root: string; suffixes: [string] };
   }[];
+  defaultCountryFlag: string;
+  defaultNationality: string;
 };
 
-export default function SelectCountry({ countries }: Props) {
+export default function UpdateCountry({
+  countries,
+  defaultCountryFlag,
+  defaultNationality,
+}: Props) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [search, setSearch] = useState<string>("");
@@ -36,34 +42,31 @@ export default function SelectCountry({ countries }: Props) {
         <div className="relative w-full flex justify-between items-center ">
           <span className="absolute left-3  text-red-500 scale-125">🌍</span>
           <span className="relative px-4  tracking-wider uppercase pl-10 text-stone-700">
-            {selectedCountry ? selectedCountry : "Nationality"}
+            {selectedCountry || defaultNationality || "Nationality"}
             <input
               className="opacity-0 absolute left-0"
               type="text"
               required
               name="country"
-              defaultValue={selectedCountry}
+              defaultValue={defaultNationality}
             />
           </span>
 
-          {selectedFlag && (
-            <Image
-              src={selectedFlag}
-              alt="country flag"
-              width={50}
-              height={50}
-              unoptimized
-              className="w-6 h-4 ml-auto"
-            />
-          )}
+          <Image
+            src={selectedFlag || defaultCountryFlag}
+            alt="country flag"
+            width={50}
+            height={50}
+            unoptimized
+            className="w-6 h-4 ml-auto"
+          />
           {/*To enavle parsing of country flag string into supabase, because Image tag is not a form element */}
           <input
             type="hidden"
-            name="countryFlag"
+            name="phoneCountryFlag"
             value={selectedFlag}
             required
           />
-
           <RiArrowDownSFill
             className={`ml-2 text-stone-400 text-2xl transition-all duration-700 ${
               isClicked ? "rotate-180" : "rotate-0"

@@ -20,8 +20,8 @@ export default async function page({ searchParams }: Props) {
 
   const bookings = await getBookings(memberId);
 
-  let filter = searchParams?.status ?? "all";
-  let filteredBookings;
+  const filter = searchParams?.status ?? "all";
+  let filteredBookings = [];
 
   if (filter === "all")
     filteredBookings = bookings.filter((booking) => booking.status);
@@ -58,7 +58,7 @@ export default async function page({ searchParams }: Props) {
           <span>Actions</span>
         </div>
       </div>
-      {!filteredBookings ? (
+      {!filteredBookings.length ? (
         <BookNow />
       ) : (
         filteredBookings.map((booking) => (
@@ -74,7 +74,7 @@ function BookNow() {
     <div className="flex flex-col gap-3 justify-center items-center">
       <p className="text-xl text-stone-600">
         {" "}
-        You don&apos;t have any booking yet{" "}
+        You don&apos;t have any confirmed booking yet{" "}
       </p>
       <Link
         href={`/training-classes`}

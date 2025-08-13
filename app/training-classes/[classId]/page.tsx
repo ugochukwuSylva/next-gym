@@ -3,6 +3,7 @@ import SelectCountry from "@/app/_components/SelectCountry";
 import SelectTrainer from "@/app/_components/SelectTrainer";
 import TrainingClassIdPage from "@/app/_components/TrainingClassIdPage";
 import {
+  getBookings,
   getCountries,
   getTrainers,
   getTrainingClassById,
@@ -24,11 +25,20 @@ export default async function page({ params }: Props) {
   const selectedClass = await getTrainingClassById(classId);
   const countries = await getCountries();
   const instructors = await getTrainers();
+
   const session = await auth();
   const user = session?.user?.name;
+  const memberId = session?.user?.memberId;
+
+  const bookings = await getBookings(memberId);
+  const bookedClassId = bookings.map((bookings) => bookings.trainingClassId);
 
   return (
-    <TrainingClassIdPage selectedClass={selectedClass} user={user}>
+    <TrainingClassIdPage
+      selectedClass={selectedClass}
+      user={user}
+      bookedClassId={bookedClassId}
+    >
       <SelectCountry countries={countries} />
       <PhoneContact countries={countries} />
       <SelectTrainer instructors={instructors} />

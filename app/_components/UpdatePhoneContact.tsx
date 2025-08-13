@@ -14,9 +14,15 @@ type Props = {
     idd: { root: string; suffixes: [string] };
     flag: string; //This gives the corresponding country code e.g NG for Nigeria
   }[];
+  defaultPhoneNumber: string;
+  defaultCountryFlag: string;
 };
 
-export default function PhoneContact({ countries }: Props) {
+export default function UpdatePhoneContact({
+  countries,
+  defaultCountryFlag,
+  defaultPhoneNumber,
+}: Props) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
@@ -65,7 +71,7 @@ export default function PhoneContact({ countries }: Props) {
 
           <input
             type="tel"
-            defaultValue={preFixNumber}
+            defaultValue={`+${defaultPhoneNumber}`}
             onChange={handleChange}
             onBlur={handleOnBlur}
             required
@@ -76,24 +82,21 @@ export default function PhoneContact({ countries }: Props) {
             } cursor-pointer bg-transparent`}
           />
 
-          {selectedFlag && (
-            <Image
-              src={selectedFlag}
-              alt="country flag"
-              width={50}
-              height={50}
-              unoptimized
-              className="w-6 h-4 ml-auto"
-            />
-          )}
+          <Image
+            src={selectedFlag || defaultCountryFlag}
+            alt="country flag"
+            width={50}
+            height={50}
+            unoptimized
+            className="w-6 h-4 ml-auto"
+          />
           {/*To enavle parsing of country flag string into supabase, because Image tag is not a form element */}
           <input
             type="hidden"
-            name="phoneCountryFlag"
-            value={selectedFlag}
+            name="countryFlag"
+            value={selectedFlag || defaultCountryFlag}
             required
           />
-
           <RiArrowDownSFill
             className={`ml-2 text-stone-400 text-2xl transition-all duration-700 ${
               isClicked ? "rotate-180" : "rotate-0"

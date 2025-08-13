@@ -146,6 +146,46 @@ export async function getMember(email: string | null | undefined) {
   return data;
 }
 
+export async function getPaymentDetails(email: string) {
+  const { data, error } = await supabase
+    .from("payments")
+    .select("amount_total, card_brand, last4_digits, email")
+    .eq("email", email)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error("Could not get payment details");
+  }
+  return data;
+}
+
+export async function getBookingsByMemberId(memberId: number) {
+  const { data: bookings, error } = await supabase
+    .from("bookings")
+    .select("*")
+    .eq("memberId", memberId);
+
+  if (error) {
+    throw new Error("Could not get bookings");
+  }
+  return bookings;
+}
+
+export async function getBookingByBookingId(id: number) {
+  const { data: bookings, error } = await supabase
+    .from("bookings")
+    .select(
+      "id, nationality, instructor, phoneNumber, countryFlag, phoneCountryFlag"
+    )
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    throw new Error("Could not get bookings");
+  }
+  return bookings;
+}
+
 //
 export async function getCountries() {
   try {
@@ -161,27 +201,17 @@ export async function getCountries() {
   }
 }
 
-export async function getPaymentDetails(email: string) {
-  const { error, data } = await supabase
-    .from("payments")
-    .select("*")
-    .eq("email", email)
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    throw new Error("Could not get payment details");
-  }
-
-  return data;
-}
-
-export async function handleCheckout(priceId: string, email: string) {
+export async function handleCheckout(
+  priceId: string,
+  email: string,
+  bookingId: number
+) {
   const res = await fetch("/api/create-checkout-session", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ priceId, email }),
+    body: JSON.stringify({ priceId, email, bookingId }),
   });
   const data = await res.json();
   console.log(data);

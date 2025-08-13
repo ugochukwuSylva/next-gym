@@ -4,31 +4,28 @@ import Image from "next/image";
 import CloseButton from "./CloseButton";
 import { useFormStatus } from "react-dom";
 import SpinnerMini from "./SpinnerMini";
-import { createGymBooking } from "../_lib/actions";
+import { updateBooking } from "../_lib/actions";
 import toast from "react-hot-toast";
 import { useTransition } from "react";
-import { redirect } from "next/navigation";
 
 type Props = {
   isBlured: boolean;
   children: React.ReactNode;
   user: string;
+  comment: string;
   id: number;
-  isAlreadyBooked: boolean;
   setIsClickedBooking: (click: boolean) => void;
 };
 
-export default function BookingForm({
+export default function UpdateBookingForm({
   isBlured,
   children,
   user,
+  comment,
   id,
-  isAlreadyBooked,
   setIsClickedBooking,
 }: Props) {
   const [isPending, setTransition] = useTransition();
-
-  if (isAlreadyBooked) return toast.error(`You already booked this class`);
 
   return (
     <div
@@ -39,28 +36,24 @@ export default function BookingForm({
       <CloseButton close={() => setIsClickedBooking(false)} />
 
       <form
-        // action={createGymBooking}
         action={async (formData) => {
-          const gymBooking = createGymBooking.bind(null, id);
-          function booking() {
+          const updateGymBooking = updateBooking.bind(null, id);
+          (() => {
             setTransition(async () => {
-              const booking = await gymBooking(formData);
-
-              if (booking.success) {
-                toast.success(booking.message);
-                redirect("/dashboard/bookings");
+              const update = await updateGymBooking(formData);
+              if (update.success) {
+                toast.success(update.message);
               } else {
-                toast.error(booking.message);
+                toast.error(update.message);
               }
             });
-          }
-          booking();
+          })();
         }}
         className="flex justify-end items-center relative min-h-[30rem] w-[95%] sm:w-[80%] xl:w-[60rem] rounded-md shadow-black overflow-hiddens px-0 py-6 lg:p-10   md:bg-gradient-to-r  lg:bg-gradient-120 from-transparent  to-white/70 lg:from-40% lg:to-40% from-50% to-50%"
       >
         <div className=" w-full md:w-[50%] lg:w-80 flex flex-col gap-6 px-8 lg:px-0 lg:pr-4">
           <input
-            disabled={isPending}
+            disabled
             type="text"
             required
             name="fullName"
@@ -73,6 +66,7 @@ export default function BookingForm({
 
           <textarea
             disabled={isPending}
+            defaultValue={comment}
             placeholder="Extra information (optional)"
             name="optional-info"
             className="text-gray-700 h-32 md:h-24 border p-3 text-lg focus:outline-none focus:ring-2 focus:ring-black/20 placeholder:text-stone-600 md:placeholder:text-stone-400  bg-white/70 md:bg-white disabled:cursor-not-allowed"

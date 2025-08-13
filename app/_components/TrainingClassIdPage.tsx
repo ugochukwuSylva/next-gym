@@ -17,6 +17,7 @@ type Props = {
     id: number;
   };
   user: string;
+  bookedClassId: any[];
 
   children: React.ReactNode;
 };
@@ -29,12 +30,15 @@ export default function TrainingClassIdPage({
   selectedClass,
   children,
   user,
+  bookedClassId,
 }: Props) {
   const [isClickedBooking, setIsClickedBooking] = useState<boolean>(false);
   const { targetRef } = useFixedOnScroll();
 
   const { workoutType, workoutDescription, image, id } = selectedClass;
   const [text3, text4] = workoutType.split(" ");
+
+  const isAlreadyBooked = bookedClassId.includes(id);
 
   return (
     <div className=" md:min-h-screen lg:h-screen w-full" ref={targetRef}>
@@ -68,7 +72,13 @@ export default function TrainingClassIdPage({
           </div>
         </div>
       </div>
-      <BookingForm user={user} id={id} isBlured={isClickedBooking}>
+      <BookingForm
+        user={user}
+        id={id}
+        isBlured={isClickedBooking}
+        isAlreadyBooked={isAlreadyBooked}
+        setIsClickedBooking={setIsClickedBooking}
+      >
         {children}
       </BookingForm>
     </div>

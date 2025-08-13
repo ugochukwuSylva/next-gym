@@ -11,8 +11,11 @@ type Props = {
 export default async function PaymentStatus({ status }: Props) {
   const session = await auth();
   const { email } = session?.user;
-  const payments = await getPaymentDetails(email);
-  const { card_brand, last4_digits, amount_total } = payments[0];
+  const paymentDetails = await getPaymentDetails(email);
+
+  const amount_total = paymentDetails[0]?.amount_total;
+  const card_brand = paymentDetails[0]?.card_brand;
+  const last4_digits = paymentDetails[0]?.last4_digits;
 
   return (
     <div className=" w-full h-screen backdrop-blur-sm bg-black/80 flex justify-center items-center fixed left-0 top-0 z-50">

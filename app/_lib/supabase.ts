@@ -11,7 +11,7 @@ const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY as string;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // For writing into supabase directly from backend. We need supabaseSecretKey to do so
-export const supabase_stripe = () => {
+export const supabase_mutate = () => {
   if (!supabaseSecretKey) {
     throw new Error("Supabase service key is required");
   }

@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
-import { BiSearchAlt2 } from "react-icons/bi";
 import OutsideClickHandler from "react-outside-click-handler";
 
 type Props = {
   instructors: { fullName: string }[];
+  defaultInstructor: string;
 };
 
-export default function SelectTrainer({ instructors }: Props) {
+export default function UpdateTrainer({
+  instructors,
+  defaultInstructor,
+}: Props) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [selectInstructor, setSelectInstructor] = useState<string>("");
 
@@ -24,7 +27,7 @@ export default function SelectTrainer({ instructors }: Props) {
             {"🏋🏾‍♂️"}
           </span>
           <span className="px-4  tracking-wider uppercase pl-10 text-stone-700">
-            {selectInstructor ? selectInstructor : "Select Instructor"}
+            {selectInstructor || defaultInstructor}
             <input
               className="opacity-0 absolute left-0"
               type="text"

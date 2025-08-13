@@ -1,5 +1,5 @@
 import { stripe } from "@/app/_lib/stripe";
-import { supabase_stripe } from "@/app/_lib/supabase";
+import { supabase_mutate } from "@/app/_lib/supabase";
 import { headers } from "next/headers";
 import Stripe from "stripe";
 
@@ -44,23 +44,42 @@ export async function POST(req: Request) {
     const brand = paymentMethod?.card?.brand;
     const last4 = paymentMethod?.card?.last4;
 
-    const supabase = supabase_stripe();
+    const bookingId = session?.metadata?.booking_id;
+    const supabase = supabase_mutate();
 
-    // Successful payment in Supabase
-    const { error } = await supabase.from("payments").insert([
+    // Update supabase after a successful payment
+    const { error } = await supabase
+      .from("bookings")
+      .update({
+        isPaid: true,
+        status: "confirmed",
+        cardBrand: brand,
+        last4Digits: last4,
+      })
+      .eq("id", bookingId)
+      .select();
+
+    // This particular insertion is to enable me retrieve some data to display at the success page after payment, although, it may not be a clean way of doing it
+    const { error: insertionError } = await supabase.from("payments").insert([
       {
-        stripe_session_id: session.id,
+        // stripe_session_id: session.id,
+        // currency: session.currency,
         email: session.customer_email,
         amount_total: session.amount_total,
-        currency: session.currency,
         status: session.payment_status,
         card_brand: brand,
         last4_digits: last4,
       },
     ]);
 
+    if (insertionError) {
+      return new Response(`Supabase Error: ${insertionError.message}`, {
+        status: 500,
+      });
+    }
+
     if (error) {
-      console.log("Supabase insert error:", error.message);
+      console.log("Supabase update error:", error.message);
       return new Response(`Supabase Error: ${error.message}`, { status: 500 });
     }
 

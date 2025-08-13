@@ -2,7 +2,7 @@ import { stripe } from "@/app/_lib/stripe";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { email, priceId } = await req.json();
+  const { email, priceId, bookingId } = await req.json();
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -18,6 +18,10 @@ export async function POST(req: Request) {
       ],
       success_url: "http://localhost:3000/dashboard/bookings/success",
       cancel_url: "http://localhost:3000/dashboard/bookings/cancel",
+      // custom property
+      metadata: {
+        booking_id: bookingId,
+      },
     });
 
     return NextResponse.json({ url: session.url });
