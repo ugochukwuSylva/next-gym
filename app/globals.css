@@ -4,7 +4,7 @@
 
 @layer components {
   .dashboardItems {
-    @apply grid grid-cols-[2rem_1fr] justify-center items-center  p-3  rounded-sm hover:shadow-md *:hover:text-red-600 hover:bg-red-50 transition-all duration-300 mb-3 [&:not(:last-child)]:border-b hover:[&:not(:last-child)]:border-b-transparent last:mt-auto;
+    @apply flex sm:grid grid-cols-[2rem_1fr] justify-center items-center p-3  rounded-sm hover:shadow-md *:hover:text-red-600 hover:bg-red-50 transition-all duration-300 mb-3 [&:not(:last-child)]:border-b hover:[&:not(:last-child)]:border-b-transparent last:mt-auto;
   }
 
   .animated-social {

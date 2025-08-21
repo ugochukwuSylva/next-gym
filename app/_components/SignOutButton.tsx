@@ -2,10 +2,16 @@
 
 import { signOutAction } from "../_lib/actions";
 import { BiLogOut } from "react-icons/bi";
+import SpinnerMini from "./SpinnerMini";
+import { useTransition } from "react";
 
 function SignOutButton() {
+  const [isPending, startTransition] = useTransition();
+
   function handleSignOut() {
-    if (confirm("Are you sure you want to sign out ?")) signOutAction();
+    if (confirm("Are you sure you want to sign out ?")) {
+      startTransition(() => signOutAction());
+    }
   }
 
   return (
@@ -13,7 +19,9 @@ function SignOutButton() {
       <button className="text-xl text-stone-600 ">
         <BiLogOut />
       </button>
-      <button className="flex items-center ">Sign out</button>
+      <button className="hidden md:flex items-center">
+        {isPending ? <SpinnerMini /> : "Sign out"}
+      </button>
     </form>
   );
 }

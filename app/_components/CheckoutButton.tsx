@@ -26,7 +26,7 @@ export default function CheckoutButton({
     <form action={() => handleSubmit(priceId, email, bookingId)}>
       <button
         disabled={isPending || pending}
-        className={`py-2 px-3 rounded-full  bg-green-200 hover:bg-green-300 transition-all duration-200 ${
+        className={`py-2 px-3 whitespace-nowrap rounded-full  bg-green-200 hover:bg-green-300 transition-all duration-200 ${
           isPending || pending
             ? "opacity-40 cursor-not-allowed bg-green-300"
             : ""

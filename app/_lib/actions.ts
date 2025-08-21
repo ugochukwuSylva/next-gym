@@ -57,7 +57,7 @@ export async function createGymBooking(id: number, formData: FormData) {
     throw new Error("Gym class failed to book");
   }
 
-  return { success: true, message: `Gym class ${id} booked successfully 😊` };
+  return { success: true, message: `Gym class #${id} booked successfully 😊` };
 }
 
 export async function deleteBooking(bookingId: number) {
@@ -81,14 +81,14 @@ export async function deleteBooking(bookingId: number) {
     // I want to display the state of booking with react-hot-toast which is not supported in server actions, hence the reason I am manually returning a message that I will use from the client-side
     return {
       success: false,
-      message: `Booking ${bookingId} failed to delete 😔`,
+      message: `Booking #${bookingId} failed to delete 😔`,
     };
     throw new Error("Could not delete booking");
   }
   revalidatePath("/dashboard/bookings");
   return {
     success: true,
-    message: `Booking ${bookingId} deleted successfully 😊`,
+    message: `Booking #${bookingId} deleted successfully 😊`,
   };
 }
 

@@ -4,7 +4,7 @@ import Greetings from "../_components/Greetings";
 import SignOutButton from "../_components/SignOutButton";
 
 import { FaHome } from "react-icons/fa";
-import { MdManageAccounts } from "react-icons/md";
+// import { MdManageAccounts } from "react-icons/md";
 import { MdOutlineEditCalendar } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
 
@@ -23,17 +23,17 @@ export default async function layout({ children }: Props) {
 
   return (
     <Container>
-      <div className="grid grid-cols-[20rem_1fr] p-10 gap-3 h-full  bg-white">
-        <aside className="flex flex-col  h-full bg-stone-50 p-3 border-r">
+      <div className="grid grid-cols-[4rem_1fr] sm:grid-cols-[5rem_1fr] md:grid-cols-[15rem_1fr] lg:grid-cols-[20rem_1fr] px-1 py-4 md:py-10 lg:p-10 gap-2 sm:gap-3 h-full bg-white overflow-x-hidden">
+        <aside className="flex flex-col  h-full bg-stone-50 p-0 sm:p-3 border-r">
           <DashboardSideNavItem link="/dashboard" text="Home">
             <FaHome />
           </DashboardSideNavItem>
           <DashboardSideNavItem link="/dashboard/bookings" text="Bookings">
             <MdOutlineEditCalendar />
           </DashboardSideNavItem>
-          <DashboardSideNavItem link="/dashboard/profile" text="Profile">
+          {/* <DashboardSideNavItem link="/dashboard/profile" text="Profile">
             <MdManageAccounts />
-          </DashboardSideNavItem>
+          </DashboardSideNavItem> */}
           <DashboardSideNavItem link="/dashboard/cart" text="Cart">
             <BsCart4 />
           </DashboardSideNavItem>

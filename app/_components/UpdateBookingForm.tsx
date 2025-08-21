@@ -49,7 +49,7 @@ export default function UpdateBookingForm({
             });
           })();
         }}
-        className="flex justify-end items-center relative min-h-[30rem] w-[95%] sm:w-[80%] xl:w-[60rem] rounded-md shadow-black overflow-hiddens px-0 py-6 lg:p-10   md:bg-gradient-to-r  lg:bg-gradient-120 from-transparent  to-white/70 lg:from-40% lg:to-40% from-50% to-50%"
+        className="flex justify-end items-center relative min-h-[30rem] w-[95%] sm:w-[80%] xl:w-[60rem] rounded-md shadow-black overflow-hidden px-0 py-6 lg:p-10   md:bg-gradient-to-r  lg:bg-gradient-120 from-transparent  to-white/70 lg:from-40% lg:to-40% from-50% to-50%"
       >
         <div className=" w-full md:w-[50%] lg:w-80 flex flex-col gap-6 px-8 lg:px-0 lg:pr-4">
           <input

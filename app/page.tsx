@@ -7,7 +7,7 @@ import SectionFive from "./_components/SectionFive";
 
 export default function Page() {
   return (
-    <div className="h-full relative ">
+    <div className="h-full relative overflow-x-hidden">
       <Hero />
       <SectionOne />
       <SectionTwo />

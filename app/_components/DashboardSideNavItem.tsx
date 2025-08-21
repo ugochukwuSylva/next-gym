@@ -20,7 +20,7 @@ export default function DashboardSideNavItem({ children, text, link }: Props) {
       }`}
     >
       <span className="text-xl text-stone-600">{children}</span>
-      <span className="">{text}</span>
+      <span className="hidden md:block">{text}</span>
     </Link>
   );
 }
