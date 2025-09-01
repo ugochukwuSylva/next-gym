@@ -2,10 +2,11 @@
 
 import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function PageNotFound() {
   const { targetRef } = useFixedOnScroll();
+  const router = useRouter();
 
   return (
     <div className=" md:min-h-screen lg:h-screen w-full " ref={targetRef}>
@@ -22,18 +23,18 @@ export default function PageNotFound() {
 
           <p className="w-full text-center p-1 font-black text-stone-500 text-lg sm:text-3xl leading-8 sm:leading-10 absolute bottom-0 sm:bottom-10  ">
             {" "}
-            How did you get here? It's cool. We'll
+            How did you get here? It&apos;s cool. We&apos;ll
             <br />
             help you out
           </p>
         </div>
 
-        <Link
-          href="/"
+        <button
+          onClick={() => router.back()}
           className="min-w-32 mb-20 lg:mb-0 bg-red-500 text-white hover:bg-black transition-all duration-300 p-3 rounded-md"
         >
-          Back to Homepage
-        </Link>
+          &larr; Back
+        </button>
       </div>
     </div>
   );

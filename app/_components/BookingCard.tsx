@@ -46,8 +46,8 @@ export default function BookingCard({ booking }: Props) {
   }
 
   return (
-    <div className="w-full mb-3 pb-2 border-b border-b-stone-200 hover:bg-stone-100 hover:shadow-lg transition-all duration-200">
-      <div className="flex justify-between sm:grid grid-cols-[16rem_1fr_1fr_1fr_1fr] lg:grid-cols-[16rem_1fr_1fr_1fr_1fr_1fr] sm:justify-center items-center">
+    <div className="w-full pt-2 sm:pt-0 mb-3 pb-2 border-b border-b-stone-200 [&:not(:last-child)]:border-t border-t-stone-200 sm:[&:not(:last-child)]:border-t-0 hover:bg-stone-100 hover:shadow-lg transition-all duration-200">
+      <div className="flex justify-between sm:grid grid-cols-[16rem_1fr_1fr_1fr] lg:grid-cols-[16rem_1fr_1fr_1fr_1fr_1fr] sm:justify-center items-center">
         <div className="h-24 flex items-center gap-2">
           <Image
             src={booking.trainingClasses.image}
@@ -64,16 +64,14 @@ export default function BookingCard({ booking }: Props) {
               <p className="text-sm text-stone-500 uppercase">Gym Class</p>
             </div>
 
-            <div className="flex items-center">
-              <p className="block lg:hidden italic">
-                $ {booking.trainingClasses.price}
-              </p>
+            <div className="flex sm:hidden items-center">
+              <p className="italic">$ {booking.trainingClasses.price}</p>
               <span className="text-stone-500 text-sm italic ml-1">
                 &bull;{booking.status === "unconfirmed" ? " unpaid" : " paid"}
               </span>
             </div>
 
-            <div className="text-xs block sm:hidden text-stone-500">
+            <div className="text-xs block sm:hidden text-stone-500 whitespace-nowrap">
               {formatDate(booking.created_at)}
             </div>
             <p className="text-xs text-nowrap">Trainer: {booking.instructor}</p>
@@ -107,7 +105,7 @@ export default function BookingCard({ booking }: Props) {
             <div className="hidden sm:block">Paid</div>
           )}
         </div>
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
           {booking.status === "unconfirmed" && (
             <ActionButton
               actionType="update"

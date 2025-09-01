@@ -1,3 +1,7 @@
 export default function page() {
-  return <div>This the cart page</div>;
+  return (
+    <div>
+      <p>This is the cart page</p>
+    </div>
+  );
 }

@@ -43,7 +43,7 @@ export default async function page({ searchParams }: Props) {
       } h-full`}
     >
       <>
-        <div className="flex-col sm:flex  items-center justify-between pt-1 sm:pt-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-1 sm:pt-4">
           <p className="text-lg sm:text-xl text-stone-800 mb-2 sm:mb-0">
             Your bookings
           </p>
@@ -53,6 +53,7 @@ export default async function page({ searchParams }: Props) {
             <BookingsFilter option="unconfirmed" />
           </div>
         </div>
+
         <div className="hidden sm:grid grid-cols-[16rem_1fr_1fr_1fr_1fr] lg:grid-cols-[16rem_1fr_1fr_1fr_1fr_1fr] text-stone-200 bg-stone-700 mb-2 mt-3 *:text-center">
           <span className="[&:not(:last-child)]:border-r p-4">Program</span>
           <span className="[&:not(:last-child)]:border-r p-4">

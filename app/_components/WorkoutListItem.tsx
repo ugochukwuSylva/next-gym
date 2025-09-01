@@ -6,8 +6,9 @@ type Props = {
 
 export default function WorkoutListItem({ workout }: Props) {
   return (
-    <div className="group flex items-center gap-3">
-      <span className="rounded-full transition-all duration-100 text-white p-2 bg-red-500 group-hover:bg-red-100 group-hover:scale-110 group-hover:text-red-500 ">
+    // <div className="group flex items-center gap-3">
+    <div className="group grid grid-cols-[3rem_1fr] justify-self-center w-64 md:flex items-center gap-3">
+      <span className="rounded-full h-10 w-10 transition-all duration-100 text-white p-2 bg-red-500 group-hover:bg-red-100 group-hover:scale-110 group-hover:text-red-500 ">
         <BsCheckLg size={22} className="group-hover:scale-110" />
       </span>
       <span className="font-medium text-lg text-stone-800">{workout}</span>
