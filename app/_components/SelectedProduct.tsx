@@ -3,11 +3,8 @@
 import Image from "next/image";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
-import { RiShoppingCartLine } from "react-icons/ri";
 import ProductDetails from "./ProductDetails";
-import ShoppingButtons from "./ShoppingButtons";
-import BackButton from "./BackButton";
-import { useState } from "react";
+import ProductForm from "./ProductForm";
 
 type Props = {
   product: {
@@ -17,24 +14,13 @@ type Props = {
     productImage: string;
     aboutProduct: string;
   };
+  cartItems: string[];
 };
 
-export default function SelectedProduct({ product }: Props) {
+export default function SelectedProduct({ product, cartItems }: Props) {
   const { targetRef } = useFixedOnScroll();
 
   const { id, productImage, productName, productPrice, aboutProduct } = product;
-
-  const [quantity, setQuantity] = useState<number>(1);
-
-  function increaseQuantity() {
-    setQuantity((prev) => (prev === 100 ? 100 : prev + 1));
-  }
-
-  function decreaseQuantity() {
-    setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
-  }
-
-  const [counter, setCounter] = useState<number>(1);
 
   return (
     <div className="md:min-h-screen lg:h-screen" ref={targetRef}>
@@ -60,39 +46,11 @@ export default function SelectedProduct({ product }: Props) {
                 {productName}
               </p>
               <p className="text-red-500 text-4xl font-black">
-                ${productPrice} {counter}
+                ${productPrice}
               </p>
               <p className="text-lg text-stone-700 leading-8">{aboutProduct}</p>
 
-              <div>
-                <ShoppingButtons
-                  increase={increaseQuantity}
-                  decrease={decreaseQuantity}
-                />
-                {/*  */}
-                <button onClick={() => setCounter((prev) => prev + 1)}>
-                  increase
-                </button>
-                {counter}
-                <button onClick={() => setCounter((prev) => prev - 1)}>
-                  decrease
-                </button>
-                {/*  */}
-                <div className="">
-                  {" "}
-                  {/* form */}
-                  <div className="flex gap-2 mt-4">
-                    <div className="p-3 rounded-md w-52 sm:w-56  bg-red-500 text-center flex justify-center items-center text-stone-200 hover:bg-stone-800  transition-colors duration-300">
-                      <RiShoppingCartLine size={25} />{" "}
-                      <button className="ml-2 text-lg font-bold">
-                        Add to cart
-                      </button>
-                    </div>
-                    <BackButton />
-                  </div>
-                </div>
-              </div>
-
+              <ProductForm product={product} cartItems={cartItems} />
               <ProductDetails
                 id={id}
                 productName={productName}

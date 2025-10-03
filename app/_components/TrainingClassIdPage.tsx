@@ -17,7 +17,7 @@ type Props = {
     id: number;
   };
   user: string;
-  bookedClassId: any[];
+  bookedClassId: number[];
 
   children: React.ReactNode;
 };
@@ -56,7 +56,7 @@ export default function TrainingClassIdPage({
             </p>
 
             <div className="flex flex-col-reverse md:flex-row gap-3 mt-8">
-              <BackButton />
+              <BackButton path="/training-classes" />
               <BookingButton setIsClickedBooking={setIsClickedBooking} />
             </div>
           </div>

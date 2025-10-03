@@ -28,7 +28,7 @@ export default function usePagination<T extends object[]>(
   }
 
   return {
-    arrContents,
+    arrContents: arrContents as T,
     totalPages,
     pageNumber,
     currentPage,

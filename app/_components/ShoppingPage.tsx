@@ -7,23 +7,18 @@ import PaginationButtons from "./PaginationButtons";
 import usePagination from "../customHook/usePagination";
 import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ProductProps } from "../_types/PropTypes";
 
 type Props = {
-  products: {
-    productName: string;
-    productPrice: number;
-    oldPrice: number;
-    productImage: string;
-    isDiscounted: boolean;
-    isPopular: boolean;
-    id: string;
-  }[];
+  products: ProductProps[];
+
+  cartItems: ProductProps[];
 };
 
-export default function ShoppingPage({ products }: Props) {
+export default function ShoppingPage({ products, cartItems }: Props) {
   const { targetRef } = useFixedOnScroll();
   const [numProduct, setNumProduct] = useState<number>(8);
-  const [sortOption, setSortOption] = useState<string>("all");
+  const [, setSortOption] = useState<string>("all");
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -46,11 +41,11 @@ export default function ShoppingPage({ products }: Props) {
   let sortedView;
   if (sorted === "all") sortedView = arrContents.filter((product) => product);
   if (sorted === "popular")
-    sortedView = arrContents.filter((product: any) => product.isPopular);
+    sortedView = arrContents.filter((product) => product.isPopular);
   if (sorted === "discounted")
-    sortedView = arrContents.filter((product: any) => product.isDiscounted);
+    sortedView = arrContents.filter((product) => product.isDiscounted);
   if (sorted === "alphabetical")
-    sortedView = arrContents?.slice().sort((a: any, b: any) => {
+    sortedView = arrContents?.slice().sort((a, b) => {
       const nameA = a.productName ? String(a.productName) : "";
       const nameB = b.productName ? String(b.productName) : "";
       return nameA.localeCompare(nameB);
@@ -109,16 +104,11 @@ export default function ShoppingPage({ products }: Props) {
           {/*  */}
 
           <div className="flex flex-wrap gap-6 mb-6">
-            {sortedView?.map((product: any) => (
+            {sortedView?.map((product) => (
               <Product
                 key={product.productImage}
-                productImage={product.productImage}
-                productName={product.productName}
-                productPrice={product.productPrice}
-                oldPrice={product.oldPrice}
-                id={product.id}
-                productQuantity={0}
-                totalPrice={0}
+                product={product}
+                cartItems={cartItems}
               />
             ))}
           </div>

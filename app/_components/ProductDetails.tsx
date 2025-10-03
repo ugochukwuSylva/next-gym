@@ -8,7 +8,7 @@ type Props = {
   productImage: string;
 };
 
-export default async function ProductDetails({
+export default function ProductDetails({
   id,
   productImage,
   productName,

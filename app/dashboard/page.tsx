@@ -4,7 +4,7 @@ import { MdOutlineEditCalendar } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 
 import { auth } from "@/auth";
-import { getBookings } from "../_lib/data-services";
+import { getBookings, getCart } from "../_lib/data-services";
 import Image from "next/image";
 import dashboardImage from "@/public/dashboard-bg-2.jpg";
 
@@ -20,6 +20,13 @@ export default async function page() {
     (paidBooking) => paidBooking.isPaid
   ).length;
 
+  const shoppings = await getCart(session.user.email);
+
+  const totalCartItems = shoppings.reduce(
+    (cur, acc) => cur + acc.productQuantity,
+    0
+  );
+
   return (
     <>
       <div className="flex flex-col md:grid grid-cols-3 gap-1 md:gap-4 mt-2">
@@ -33,7 +40,11 @@ export default async function page() {
           heading="Paid bookings"
           icon={<BsCashCoin />}
         />
-        <DashboardBox number={3} heading="Shoppings" icon={<BsCart4 />} />
+        <DashboardBox
+          number={totalCartItems}
+          heading="Shoppings"
+          icon={<BsCart4 />}
+        />
       </div>
 
       <div className="w-full relative h-96 overflow-hidden rounded-md mt-4">

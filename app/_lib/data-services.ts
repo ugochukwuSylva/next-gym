@@ -122,11 +122,15 @@ export async function getProductById(id: string) {
   return data;
 }
 
-export async function getCart() {
-  const { data, error } = await supabase.from("cart").select("*");
+export async function getCart(email: string) {
+  const { data, error } = await supabase
+    .from("cart")
+    .select("*")
+    .eq("email", email)
+    .order("created_at", { ascending: false });
 
   if (error) {
-    throw new Error("Could not fetch data");
+    throw new Error("Could not fetch cart items");
   }
 
   return data;

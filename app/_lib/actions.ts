@@ -2,7 +2,7 @@
 
 import { auth, signIn, signOut } from "@/auth";
 import { supabase, supabase_mutate } from "./supabase";
-import { getBookingsByMemberId } from "./data-services";
+import { getBookingsByMemberId, getCart } from "./data-services";
 import { revalidatePath } from "next/cache";
 
 export async function signInAction() {
@@ -127,14 +127,91 @@ export async function updateBooking(id: number, formData: FormData) {
 }
 
 // shopping APIs
-export async function addToCart(product: {
-  productName: string;
-  productPrice: number;
-  productImage: string;
-}) {
-  const { error } = await supabase.from("cart").insert([product]).select();
+// export async function addToCart(product: {
+
+// }) {
+//   const { error } = await supabase.from("cart").insert([product]).select();
+
+//   if (error) {
+//   } else {
+//   }
+// }
+
+export async function addToCart(
+  product: {
+    productName: string;
+    productImage: string;
+    productQuantity: number;
+  },
+  formData: FormData | object
+) {
+  const session = await auth();
+  if (!session) throw new Error("You must be signed in");
+  const userEmail = session.user.email;
+
+  const supabase = supabase_mutate();
+  let inputError;
+
+  const itemQuantity =
+    formData instanceof FormData && formData.get("productQuantity");
+
+  if (Number(itemQuantity) > 100) inputError = "Maximum of 100 per order";
+
+  if (Number(itemQuantity) <= 100) {
+    const { error } = await supabase
+      .from("cart")
+      .insert([{ ...product, email: userEmail }])
+      .select();
+
+    if (error) {
+      return { success: false, message: error.message };
+      throw new Error("Could not add product to cart");
+    }
+    revalidatePath("/shopping");
+
+    return { success: true, message: "" };
+  }
+  return { success: false, message: inputError };
+}
+
+export async function removeCartItem(cartItemId: number) {
+  const session = await auth();
+  const cartItems = await getCart(session.user.email);
+  const cartIds = cartItems.map((cartId) => cartId.id);
+
+  if (!cartIds.includes(cartItemId))
+    throw new Error("You do not have permission to remove this item from cart");
+
+  const supabase = supabase_mutate();
+
+  const { error } = await supabase.from("cart").delete().eq("id", cartItemId);
 
   if (error) {
-  } else {
+    throw new Error(error.message);
   }
+
+  revalidatePath("/dashboard/cart");
+}
+
+export async function editCartItem(
+  cartId: number,
+  itemQuantity: number,
+  productPrice: number
+) {
+  const supabase = supabase_mutate();
+
+  const { error } = await supabase
+    .from("cart")
+    .update([
+      {
+        productQuantity: itemQuantity,
+        totalPrice: itemQuantity * productPrice,
+      },
+    ])
+    .eq("id", cartId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+  revalidatePath("/dashboard/cart");
 }
