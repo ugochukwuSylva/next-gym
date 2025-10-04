@@ -3,11 +3,10 @@ import { supabase_mutate } from "@/app/_lib/supabase";
 import { headers } from "next/headers";
 import Stripe from "stripe";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export const dynamic = "force-dynamic";
+export const preferredRegion = "auto";
+export const maxDuration = 60;
+export const bodyParser = false; // ✅ this replaces the old `config` field
 
 export async function POST(req: Request) {
   const rawBody = await req.text();
