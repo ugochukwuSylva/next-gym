@@ -6,16 +6,16 @@ import { getPaymentDetails } from "../_lib/data-services";
 
 type Props = {
   status: "successful" | "cancel";
+  pageName: string;
+  path: string;
 };
 
-export default async function PaymentStatus({ status }: Props) {
+export default async function PaymentStatus({ status, pageName, path }: Props) {
   const session = await auth();
-  const { email } = session?.user;
-  const paymentDetails = await getPaymentDetails(email);
 
-  const amount_total = paymentDetails[0]?.amount_total;
-  const card_brand = paymentDetails[0]?.card_brand;
-  const last4_digits = paymentDetails[0]?.last4_digits;
+  const paymentDetails = await getPaymentDetails(session?.user?.email);
+
+  const { amount_total, card_brand, last4_digits } = paymentDetails[0];
 
   return (
     <div className=" w-full h-screen backdrop-blur-sm bg-black/80 flex justify-center items-center fixed left-0 top-0 z-50">
@@ -67,11 +67,11 @@ export default async function PaymentStatus({ status }: Props) {
             </div>
           )}
           <Link
-            href="/dashboard/bookings"
+            href={path}
             className="bg-blue-600 text-center p-2 rounded-md mt-3
              text-stone-200 hover:opacity-70 transition-all duration-200"
           >
-            &larr; Back to bookings page
+            &larr; Back to {pageName} page
           </Link>
         </div>
       </div>

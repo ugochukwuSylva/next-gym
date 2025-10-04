@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RiShoppingCartLine } from "react-icons/ri";
-import { ProductProps } from "../_types/PropTypes";
+import { CartProps, ProductProps } from "../_types/PropTypes";
 import { BsCheckLg } from "react-icons/bs";
 import { addToCart } from "../_lib/actions";
 import { useTransition } from "react";
@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 
 type Props = {
   product: ProductProps;
-  cartItems: ProductProps[];
+  cartItems: CartProps[];
 };
 
 export default function Product({ product, cartItems }: Props) {
@@ -27,8 +27,8 @@ export default function Product({ product, cartItems }: Props) {
       const product = {
         productName,
         productImage,
-        productQuantity: 1,
         productPrice,
+        productQuantity: 1,
         totalPrice: 1 * productPrice,
       };
 

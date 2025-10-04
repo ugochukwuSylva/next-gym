@@ -1,3 +1,5 @@
+import CartBasketIcon from "@/app/_components/CartBasketIcon";
+import CartCheckOutButton from "@/app/_components/CartCheckOutButton";
 import CartItemList from "@/app/_components/CartItemList";
 import { getCart } from "@/app/_lib/data-services";
 import { formatCurrency } from "@/app/_utils/formatDate";
@@ -30,13 +32,16 @@ export default async function page() {
 
   return (
     <>
-      <div className="flex justify-between items-center border-b p-4 italic">
-        <p className="text-2xl text-red-500">
+      <div className="flex justify-between items-center border-b p-4">
+        <p className="text-2xl text-red-500 hidden sm:block italic">
           Cart Items ({`${totalCartItems}`})
         </p>
+        <span className=" block sm:hidden">
+          <CartBasketIcon numProduct={totalCartItems} />
+        </span>
 
-        <p className="text-red-500 font-semibold text-2xl">
-          <span className="text-lg text-red-400">Total Cost:</span>{" "}
+        <p className="text-red-500 font-semibold text-2xl italic">
+          <span className="text-sm sm:text-lg text-red-400 ">Total Cost:</span>{" "}
           {formatCurrency(totalCost)}
         </p>
       </div>
@@ -45,20 +50,7 @@ export default async function page() {
         <CartItemList shoppings={shoppings} />
       </div>
 
-      <div className="flex justify-end items-center gap-2">
-        <Link
-          href=""
-          className="italic text-lg text-red-500 underline hover:text-stone-800 transition-all duration-200"
-        >
-          Checkout
-        </Link>
-        <Link
-          href="/shopping"
-          className=" bg-red-500 w-full md:w-fit text-gray-200 px-6 py-3 border-none rounded-md hover:bg-stone-900 transition-all duration-300 mt-auto text-center"
-        >
-          Continue shopping
-        </Link>
-      </div>
+      <CartCheckOutButton shoppings={shoppings} />
     </>
   );
 }

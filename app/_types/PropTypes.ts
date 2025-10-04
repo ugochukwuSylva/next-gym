@@ -7,3 +7,11 @@ export type ProductProps = {
   isPopular: boolean;
   id: number;
 };
+
+export type CartProps = {
+  productName: string;
+  productImage: string;
+  productPrice: string;
+  productQuantity: number;
+  totalPrice: number;
+};

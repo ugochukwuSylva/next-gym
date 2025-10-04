@@ -3,7 +3,11 @@ import PaymentStatus from "@/app/_components/PaymentStatus";
 export default function page() {
   return (
     <div>
-      <PaymentStatus status="successful" />
+      <PaymentStatus
+        status="successful"
+        pageName="bookings"
+        path="/dashboard/bookings"
+      />
     </div>
   );
 }

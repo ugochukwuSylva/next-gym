@@ -158,7 +158,7 @@ export async function getPaymentDetails(email: string) {
     .order("created_at", { ascending: false });
 
   if (error) {
-    throw new Error("Could not get payment details");
+    throw new Error(error.message);
   }
   return data;
 }
@@ -205,12 +205,12 @@ export async function getCountries() {
   }
 }
 
-export async function handleCheckout(
+export async function handleBooikngCheckout(
   priceId: string,
   email: string,
   bookingId: number
 ) {
-  const res = await fetch("/api/create-checkout-session", {
+  const res = await fetch("/api/create-booking-checkout-session", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -218,10 +218,24 @@ export async function handleCheckout(
     body: JSON.stringify({ priceId, email, bookingId }),
   });
   const data = await res.json();
-  console.log(data);
 
   if (data?.url) {
     window.location.href = data.url; // browser redirect
+  } else {
+    console.error("❌ No checkout session URL returned", data);
+  }
+}
+
+export async function handleCartCheckout(cartArray: object[]) {
+  const res = await fetch("/api/create-cart-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(cartArray),
+  });
+
+  const data = await res.json();
+  if (data?.url) {
+    window.location.href = data.url;
   } else {
     console.error("❌ No checkout session URL returned", data);
   }

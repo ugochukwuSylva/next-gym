@@ -48,21 +48,23 @@ export default function CartItem({ shopping, removeItem }: Props) {
   }
 
   return (
-    <div className="[&:not(:last-child)]:border-b p-3 mx-5 hover:bg-stone-100 hover:shadow-lg transition-all duration-200">
-      <div className="flex justify-between items-center">
+    <div className="[&:not(:last-child)]:border-b p-3 hover:bg-stone-100 hover:shadow-lg transition-all duration-200">
+      <div className="flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center ">
         <div className="flex items-start gap-2 h-full w-[70%]">
-          <div className="overflow-hidden h-24 w-24">
+          <div className="overflow-hidden h-24 min-w-24 max-w-24">
             <Image
               src={productImage}
               alt="cartItem-image"
               height={100}
               width={100}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full "
             />
           </div>
 
           <div>
-            <p className="text-sm -mb-2 font-medium">{productName}</p>
+            <p className="text-sm -mb-2 font-medium whitespace-nowrap">
+              {productName}
+            </p>
             <span className="text-xs mt-1 text-amber-900">Free delivery</span>
             <p className="">{`${formatCurrency(productPrice)}`}</p>
 
@@ -89,7 +91,7 @@ export default function CartItem({ shopping, removeItem }: Props) {
             <input
               value={productQuantity}
               disabled
-              className="text-stone-700 w-10 text-center text-lg border-2 border-stone-500"
+              className="text-stone-700 w-10 h-8 text-center text-lg border-2 border-stone-500"
             />
           )}
         </QuantityButtons>

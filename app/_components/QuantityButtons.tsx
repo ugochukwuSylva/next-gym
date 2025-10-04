@@ -18,7 +18,7 @@ export default function QuantityButtons({
   children,
 }: Props) {
   return (
-    <div className="border p-1 w-36 rounded-md flex justify-between items-center">
+    <div className="border p-1 h-12 w-36 rounded-md flex justify-between items-center">
       <Button pending={pending} onClick={decrease}>
         -
       </Button>

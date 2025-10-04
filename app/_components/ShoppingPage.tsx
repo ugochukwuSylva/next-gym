@@ -7,12 +7,13 @@ import PaginationButtons from "./PaginationButtons";
 import usePagination from "../customHook/usePagination";
 import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ProductProps } from "../_types/PropTypes";
+import { CartProps, ProductProps } from "../_types/PropTypes";
+import CartBasketIcon from "./CartBasketIcon";
 
 type Props = {
   products: ProductProps[];
 
-  cartItems: ProductProps[];
+  cartItems: CartProps[];
 };
 
 export default function ShoppingPage({ products, cartItems }: Props) {
@@ -61,6 +62,11 @@ export default function ShoppingPage({ products, cartItems }: Props) {
     });
   }
 
+  const numberOfProductsInCart = cartItems.reduce(
+    (cur, product) => cur + product.productQuantity,
+    0
+  );
+
   return (
     <div className="md:min-h-screen lg:h-screen" ref={targetRef}>
       <PagesBackgroundContainer
@@ -71,13 +77,12 @@ export default function ShoppingPage({ products, cartItems }: Props) {
       <div className="bg-gradient-to-b from-white to-red from-55% to-55% pb-6 lg:pb-[110vh]">
         <div className="bg-white px-8 py-24">
           <div className="flex flex-col gap-6 md:flex-row justify-between items-center mb-8">
-            <span className="text-lg">
-              {VIEWS_PER_PAGE === products.length
-                ? `Showing all ${lastPage} results`
-                : `Showing ${pageNumber} of ${products.length} results`}{" "}
-            </span>
-
-            <div className="flex gap-3">
+            <div className="flex gap-3 items-center">
+              <span className="text-lg hidden md:block">
+                {VIEWS_PER_PAGE === products.length
+                  ? `Showing all ${lastPage} results`
+                  : `Showing ${pageNumber} of ${products.length} results`}{" "}
+              </span>
               <select
                 onChange={(e) => {
                   setNumProduct(Number(e.target.value));
@@ -100,6 +105,7 @@ export default function ShoppingPage({ products, cartItems }: Props) {
                 <option value="alphabetical">Alphabetical (A-Z)</option>
               </select>
             </div>
+            <CartBasketIcon numProduct={numberOfProductsInCart} />
           </div>
           {/*  */}
 

@@ -4,9 +4,9 @@ export default function page() {
   return (
     <div>
       <PaymentStatus
-        status="cancel"
-        pageName="bookings"
-        path="/dashboard/bookings"
+        status="successful"
+        pageName="cart"
+        path="/dashboard/cart"
       />
     </div>
   );

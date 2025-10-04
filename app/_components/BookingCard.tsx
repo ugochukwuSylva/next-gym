@@ -48,15 +48,17 @@ export default function BookingCard({ booking }: Props) {
   return (
     <div className="w-full pt-2 sm:pt-0 mb-3 pb-2 border-b border-b-stone-200 [&:not(:last-child)]:border-t border-t-stone-200 sm:[&:not(:last-child)]:border-t-0 hover:bg-stone-100 hover:shadow-lg transition-all duration-200">
       <div className="flex justify-between sm:grid grid-cols-[16rem_1fr_1fr_1fr] lg:grid-cols-[16rem_1fr_1fr_1fr_1fr_1fr] sm:justify-center items-center">
-        <div className="h-24 flex items-center gap-2">
-          <Image
-            src={booking.trainingClasses.image}
-            alt="booking-image"
-            height={100}
-            width={100}
-            className="object-cover h-full"
-          />
-          <div className="h-full py-0 sm:py-2 flex flex-col justify-between">
+        <div className=" flex items-center h-full  gap-2">
+          <div className="h-24 w-16 sm:min-w-24 overflow-hidden">
+            <Image
+              src={booking.trainingClasses.image}
+              alt="booking-image"
+              height={100}
+              width={100}
+              className="object-cover h-full w-full"
+            />
+          </div>
+          <div className="h-full flex flex-col">
             <div className="leading-4">
               <p className="text-sm text-red-500 font-bold text-nowrap">
                 {booking.trainingClasses.workoutType}
@@ -74,7 +76,9 @@ export default function BookingCard({ booking }: Props) {
             <div className="text-xs block sm:hidden text-stone-500 whitespace-nowrap">
               {formatDate(booking.created_at)}
             </div>
-            <p className="text-xs text-nowrap">Trainer: {booking.instructor}</p>
+            <p className="text-xs text-nowrap mt-auto">
+              Trainer: {booking.instructor}
+            </p>
           </div>
           {/*  */}
         </div>
@@ -85,7 +89,7 @@ export default function BookingCard({ booking }: Props) {
           $ {booking.trainingClasses.price}
         </div>
         <div
-          className={`hidden lg:block text-center text-sm p-1 border rounded-full ${
+          className={`hidden lg:block text-center text-sm px-2 p-1 w-fit m-auto border rounded-full ${
             booking.status === "unconfirmed"
               ? "bg-blue-50 text-blue-800 border-blue-500"
               : "bg-green-50 text-green-500  border-green-500 "

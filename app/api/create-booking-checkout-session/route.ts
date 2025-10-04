@@ -16,16 +16,22 @@ export async function POST(req: Request) {
           quantity: 1,
         },
       ],
-      success_url: "http://localhost:3000/dashboard/bookings/success",
-      cancel_url: "http://localhost:3000/dashboard/bookings/cancel",
-      // custom property
+      success_url: `http://localhost:3000/dashboard/bookings/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `http://localhost:3000/dashboard/bookings/cancel`,
+
+      // custom property - single payment
       metadata: {
+        type: "single",
         booking_id: bookingId,
       },
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message });
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message });
+    } else {
+      return NextResponse.json({ error: "An unknown error occured" });
+    }
   }
 }
