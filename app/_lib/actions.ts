@@ -62,7 +62,9 @@ export async function createGymBooking(id: number, formData: FormData) {
 
 export async function deleteBooking(bookingId: number) {
   const session = await auth();
-  const bookings = await getBookingsByMemberId(session.user.memberId);
+  const bookings = await getBookingsByMemberId(
+    session?.user?.memberId as number
+  );
   const bookingIds = bookings.map((booking) => booking.id);
 
   if (!bookingIds.includes(bookingId)) {
@@ -176,7 +178,7 @@ export async function addToCart(
 
 export async function removeCartItem(cartItemId: number) {
   const session = await auth();
-  const cartItems = await getCart(session.user.email);
+  const cartItems = await getCart(session?.user?.email as string);
   const cartIds = cartItems.map((cartId) => cartId.id);
 
   if (!cartIds.includes(cartItemId))

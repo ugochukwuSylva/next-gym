@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default async function page() {
   const session = await auth();
-  const shoppings = await getCart(session.user.email);
+  const shoppings = await getCart(session?.user?.email as string);
 
   const totalCartItems = shoppings.reduce(
     (cur, acc) => cur + acc.productQuantity,

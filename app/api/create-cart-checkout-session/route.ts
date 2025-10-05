@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const cartItems = await req.json();
   const session = await auth();
-  const { email } = session?.user;
+  const email = session?.user?.email as string;
 
   type CartProps = {
     productName: string;

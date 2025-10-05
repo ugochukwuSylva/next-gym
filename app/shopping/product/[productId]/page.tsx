@@ -16,7 +16,7 @@ export default async function page({ params }: Props) {
   const { productId } = params;
   const product = await getProductById(productId);
   const session = await auth();
-  const cart = await getCart(session.user.email);
+  const cart = await getCart(session?.user.email as string);
   const cartItems = cart.map((cartItem) => cartItem.productName);
 
   return <SelectedProduct product={product} cartItems={cartItems} />;

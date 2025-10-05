@@ -14,13 +14,14 @@ export const metadata = {
 
 export default async function page() {
   const session = await auth();
-  const bookings = await getBookings(session?.user?.memberId);
+
+  const bookings = await getBookings(String(session?.user?.memberId));
   const totalBookings = bookings.length;
   const paidBookings = bookings.filter(
     (paidBooking) => paidBooking.isPaid
   ).length;
 
-  const shoppings = await getCart(session.user.email);
+  const shoppings = await getCart(session?.user.email as string);
 
   const totalCartItems = shoppings.reduce(
     (cur, acc) => cur + acc.productQuantity,

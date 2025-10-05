@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function Shopping() {
   const session = await auth();
   const products = await getProducts();
-  const cartItems = await getCart(session.user.email);
+  const cartItems = await getCart(session?.user.email as string);
 
   return (
     <main>

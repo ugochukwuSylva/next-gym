@@ -27,8 +27,8 @@ export default async function page({ params }: Props) {
   const instructors = await getTrainers();
 
   const session = await auth();
-  const user = session?.user?.name;
-  const memberId = session?.user?.memberId;
+  const user = session?.user?.name as string;
+  const memberId = String(session?.user?.memberId);
 
   const bookings = await getBookings(memberId);
   const bookedClassId = bookings.map((bookings) => bookings.trainingClassId);

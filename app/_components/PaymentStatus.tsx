@@ -12,8 +12,9 @@ type Props = {
 
 export default async function PaymentStatus({ status, pageName, path }: Props) {
   const session = await auth();
+  const userEmail = session?.user?.email as string;
 
-  const paymentDetails = await getPaymentDetails(session?.user?.email);
+  const paymentDetails = await getPaymentDetails(userEmail);
 
   const { amount_total, card_brand, last4_digits } = paymentDetails[0];
 

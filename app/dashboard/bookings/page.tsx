@@ -18,7 +18,7 @@ export default async function page({ searchParams }: Props) {
   const session = await auth();
 
   if (!session) throw new Error("You must be signed in");
-  const memberId = session?.user.memberId;
+  const memberId = String(session?.user?.memberId);
 
   const bookings = await getBookings(memberId);
 
