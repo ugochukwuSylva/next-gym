@@ -24,7 +24,10 @@ export default function ArticleTags() {
 
       <div className="flex lg:justify-start justify-center flex-wrap gap-2">
         {tags.map((tag) => (
-          <span className="cursor-pointer hover:bg-red-500 transition-all duration-300 hover:text-white p-3 border border-1 text-sm rounded-md">
+          <span
+            key={tag}
+            className="cursor-pointer hover:bg-red-500 transition-all duration-300 hover:text-white p-3 border border-1 text-sm rounded-md"
+          >
             {tag}
           </span>
         ))}

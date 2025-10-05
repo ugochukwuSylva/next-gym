@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
-import { BiSearchAlt2 } from "react-icons/bi";
 import OutsideClickHandler from "react-outside-click-handler";
 
 type Props = {

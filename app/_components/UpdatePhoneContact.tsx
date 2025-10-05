@@ -5,7 +5,7 @@ import { useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { BiSearchAlt2 } from "react-icons/bi";
 import OutsideClickHandler from "react-outside-click-handler";
-import parsePhoneNumberFromString from "libphonenumber-js";
+import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
 
 type Props = {
   countries: {
@@ -37,7 +37,7 @@ export default function UpdatePhoneContact({
     (country) => country?.name?.common === selectedCountry
   )?.flags.png;
 
-  const countryCode: any = sortedCountries.find(
+  const countryCode = sortedCountries.find(
     (country) => country?.name?.common === selectedCountry
   )?.flag;
 
@@ -51,7 +51,7 @@ export default function UpdatePhoneContact({
   function handleOnBlur() {
     const isPhoneNumberValidated = parsePhoneNumberFromString(
       String(preFixNumber),
-      countryCode
+      countryCode as CountryCode
     );
     if (isPhoneNumberValidated && isPhoneNumberValidated.isValid()) {
       setErrorMessage("");

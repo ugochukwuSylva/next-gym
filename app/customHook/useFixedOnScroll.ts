@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 function FixedOnScroll() {
-  const targetRef = useRef<HTMLElement | null>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function stickyFn(entries: IntersectionObserverEntry[]) {

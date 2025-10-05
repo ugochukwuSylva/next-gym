@@ -5,7 +5,8 @@ import useViewPort from "../customHook/useViewPort";
 import InstructorCard from "./InstructorCard";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
-import { Swiper, SwiperSlide, Swiper as SwiperType } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperClass } from "swiper";
 import { Autoplay } from "swiper/modules";
 
 // swiper css styles
@@ -29,17 +30,17 @@ export default function TrainersSlider({ trainers }: Props) {
     transform: "translate(50%,-50%)",
   };
 
-  const swiperRef = useRef<SwiperType | null>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
 
   function nextSlide() {
     if (swiperRef.current) {
-      swiperRef.current.swiper.slideNext();
+      swiperRef.current.slideNext();
     }
   }
 
   function prevSlide() {
     if (swiperRef.current) {
-      swiperRef.current.swiper.slidePrev();
+      swiperRef.current.slidePrev();
     }
   }
 
@@ -51,7 +52,7 @@ export default function TrainersSlider({ trainers }: Props) {
       <div className="mt-8  relative w-[20rem] md:w-[45rem]  lg:w-[75rem] h-full ">
         <Swiper
           modules={[Autoplay]}
-          ref={swiperRef}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           loop
           autoplay={{ delay: 5000 }}
           centeredSlides

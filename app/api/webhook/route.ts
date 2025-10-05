@@ -6,7 +6,6 @@ import Stripe from "stripe";
 export const dynamic = "force-dynamic";
 export const preferredRegion = "auto";
 export const maxDuration = 60;
-export const bodyParser = false; // ✅ this replaces the old `config` field
 
 export async function POST(req: Request) {
   const rawBody = await req.text();
@@ -25,9 +24,12 @@ export async function POST(req: Request) {
       sig,
       webhookSecret as string
     );
-  } catch (err: any) {
-    console.log("Stripe signature verifivation failed:", err.message);
-    return new Response(`Webhook Error: ${err.message}`, { status: 400 });
+  } catch (err) {
+    if (err instanceof Error) {
+      return new Response(`Webhook Error: ${err.message}`, { status: 400 });
+    } else {
+      return new Response("Unknown error occurred");
+    }
   }
 
   if (event.type === "checkout.session.completed") {

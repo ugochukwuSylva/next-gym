@@ -4,7 +4,7 @@ type Props = {
   color: string;
 };
 
-export default function ShareButton({ children, title, color }: Props) {
+export default function ShareButton({ children, color }: Props) {
   return (
     <div
       className={`relative group hover:${color} p-3 px-4 lg:px-8 flex items-center rounded-md transition-all duration-200`}

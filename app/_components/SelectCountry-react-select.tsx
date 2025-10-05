@@ -28,7 +28,7 @@ export default function SelectCountry({ countries }: Props) {
   }));
 
   const customStyles = {
-    control: (existingStyles: object, state) => ({
+    control: (existingStyles: object, state: { isFocused: boolean }) => ({
       // ...existingStyles,
       padding: "6px",
       paddingLeft: "32px",
@@ -36,7 +36,7 @@ export default function SelectCountry({ countries }: Props) {
       outline: "2px solid transparent",
       outlineColor: state.isFocused ? "#a8a29e" : "",
     }),
-    option: (existingStyles: object, state) => ({
+    option: (existingStyles: object, state: { isSelected: boolean }) => ({
       // ...existingStyles,
       // backgroundColor: state.isSelected ? "#fecaca" : "",
       color: state.isSelected ? "#292524" : "",

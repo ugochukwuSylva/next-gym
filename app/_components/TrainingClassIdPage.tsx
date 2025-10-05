@@ -23,7 +23,7 @@ type Props = {
 };
 
 type ButtonProps = {
-  setIsClickedBooking: Dispatch<SetStateAction<boolean>>;
+  setIsClickedBooking: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function TrainingClassIdPage({
