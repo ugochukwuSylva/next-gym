@@ -13,7 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return !!auth?.user;
     },
 
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       try {
         const existingMember = await getMember(user.email);
 
@@ -27,7 +27,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
 
     // Session Callback - used to modify the session
-    async session({ session, user }) {
+    async session({ session }) {
       const member = await getMember(session.user.email);
       session.user.memberId = member.id;
 
