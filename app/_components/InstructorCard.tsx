@@ -9,7 +9,7 @@ type Props = {
 function InstructorCard({ fullName, specialty, image }: Props) {
   return (
     <div className="w-60 md:w-full lg:w-60  px-2 z-50 h-[90%] m-auto">
-      <div className="relative  w-full h-[85%] rounded-md overflow-hidden">
+      <div className="relative  w-full h-[70%] rounded-md overflow-hidden">
         <Image
           src={image}
           alt="instructor image"
