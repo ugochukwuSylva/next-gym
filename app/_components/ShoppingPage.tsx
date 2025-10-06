@@ -14,9 +14,14 @@ type Props = {
   products: ProductProps[];
 
   cartItems: CartProps[];
+  isSignedIn: boolean;
 };
 
-export default function ShoppingPage({ products, cartItems }: Props) {
+export default function ShoppingPage({
+  products,
+  cartItems,
+  isSignedIn,
+}: Props) {
   const { targetRef } = useFixedOnScroll();
   const [numProduct, setNumProduct] = useState<number>(8);
   const [, setSortOption] = useState<string>("all");
@@ -115,6 +120,7 @@ export default function ShoppingPage({ products, cartItems }: Props) {
                 key={product.productImage}
                 product={product}
                 cartItems={cartItems}
+                isSignedIn={isSignedIn}
               />
             ))}
           </div>

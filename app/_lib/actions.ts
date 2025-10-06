@@ -6,7 +6,7 @@ import { getBookingsByMemberId, getCart } from "./data-services";
 import { revalidatePath } from "next/cache";
 
 export async function signInAction() {
-  return signIn("google", { redirectTo: "/dashboard" });
+  return signIn("google", { redirectTo: "/" });
 }
 
 export async function signOutAction() {
@@ -15,13 +15,13 @@ export async function signOutAction() {
 
 export async function createMember(newMember: object) {
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  if (!session) throw new Error("You must be signed in");
 
   const { data, error } = await supabase.from("members").insert([newMember]);
 
   if (error) {
     console.error("Supabase error:", error.message);
-    throw new Error("New member could not be created");
+    throw new Error("Could not create new member");
   }
 
   return data;
@@ -29,7 +29,7 @@ export async function createMember(newMember: object) {
 
 export async function createGymBooking(id: number, formData: FormData) {
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  if (!session) throw new Error("You must be signed in");
 
   const supabase = supabase_mutate();
 
@@ -66,6 +66,8 @@ export async function deleteBooking(bookingId: number) {
     session?.user?.memberId as number
   );
   const bookingIds = bookings.map((booking) => booking.id);
+
+  if (!session) throw new Error("You must be signed in");
 
   if (!bookingIds.includes(bookingId)) {
     throw new Error("You do not have permission to delete this booking");
@@ -128,17 +130,6 @@ export async function updateBooking(id: number, formData: FormData) {
   };
 }
 
-// shopping APIs
-// export async function addToCart(product: {
-
-// }) {
-//   const { error } = await supabase.from("cart").insert([product]).select();
-
-//   if (error) {
-//   } else {
-//   }
-// }
-
 export async function addToCart(
   product: {
     productName: string;
@@ -166,7 +157,8 @@ export async function addToCart(
       .select();
 
     if (error) {
-      return { success: false, message: error.message };
+      console.error(error.message);
+      return { success: false, message: "Could not add product to cart" };
       throw new Error("Could not add product to cart");
     }
     revalidatePath("/shopping");
@@ -181,6 +173,8 @@ export async function removeCartItem(cartItemId: number) {
   const cartItems = await getCart(session?.user?.email as string);
   const cartIds = cartItems.map((cartId) => cartId.id);
 
+  if (!session) throw new Error("You must be signed in");
+
   if (!cartIds.includes(cartItemId))
     throw new Error("You do not have permission to remove this item from cart");
 
@@ -189,7 +183,8 @@ export async function removeCartItem(cartItemId: number) {
   const { error } = await supabase.from("cart").delete().eq("id", cartItemId);
 
   if (error) {
-    throw new Error(error.message);
+    console.log(error.message);
+    throw new Error("Could not remove cart item");
   }
 
   revalidatePath("/dashboard/cart");
@@ -200,6 +195,8 @@ export async function editCartItem(
   itemQuantity: number,
   productPrice: number
 ) {
+  const session = await auth();
+  if (!session) throw new Error("You must be signed in");
   const supabase = supabase_mutate();
 
   const { error } = await supabase
@@ -213,7 +210,8 @@ export async function editCartItem(
     .eq("id", cartId);
 
   if (error) {
-    throw new Error(error.message);
+    console.log(error.message);
+    throw new Error("Could not edit cart item");
   }
   revalidatePath("/dashboard/cart");
 }

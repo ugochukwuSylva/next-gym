@@ -32,7 +32,7 @@ export async function getBookings(memberId: string) {
 
   if (error) {
     // throw new Error(error.message);
-    throw new Error("Could not fetch data");
+    throw new Error("Could not fetch bookings");
   }
 
   return data;
@@ -83,7 +83,8 @@ export async function getTrainingClassById(id: string) {
     .single();
 
   if (error) {
-    notFound();
+    console.error(error.message);
+    throw new Error("Could not fetch data");
   }
 
   return data;
@@ -92,6 +93,7 @@ export async function getTrainingClassById(id: string) {
 export async function getArticles() {
   const { data, error } = await supabase.from("articles").select("*");
   if (error) {
+    console.error(error.message);
     throw new Error("Could not fetch Articles");
   }
 

@@ -14,7 +14,6 @@ export const metadata = {
 
 export default async function page() {
   const session = await auth();
-
   const bookings = await getBookings(String(session?.user?.memberId));
   const totalBookings = bookings.length;
   const paidBookings = bookings.filter(

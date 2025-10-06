@@ -7,6 +7,7 @@ type Props = {
   imageUrl: string;
   price: string;
   id: string;
+  isSignedIn: boolean;
 };
 
 export default function ClassBooking({
@@ -15,6 +16,7 @@ export default function ClassBooking({
   imageUrl,
   price,
   id,
+  isSignedIn,
 }: Props) {
   const [text1, text2] = textHeader.split(" ");
 
@@ -37,7 +39,7 @@ export default function ClassBooking({
         <p className="leading-loose text-stone-700">{text}...</p>
 
         <Link
-          href={`/training-classes/${id}`}
+          href={`${isSignedIn ? `/training-classes/${id}` : "/login"}`}
           className="bg-red-500 w-full md:w-fit text-gray-200 px-6 py-3 border-none rounded-md hover:bg-stone-900 transition-all duration-300 mt-auto text-center"
         >
           Start Today{" "}

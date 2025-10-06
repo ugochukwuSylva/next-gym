@@ -15,9 +15,14 @@ type Props = {
     aboutProduct: string;
   };
   cartItems: string[];
+  isSignedIn: boolean;
 };
 
-export default function SelectedProduct({ product, cartItems }: Props) {
+export default function SelectedProduct({
+  product,
+  cartItems,
+  isSignedIn,
+}: Props) {
   const { targetRef } = useFixedOnScroll();
 
   const { id, productImage, productName, productPrice, aboutProduct } = product;
@@ -50,7 +55,11 @@ export default function SelectedProduct({ product, cartItems }: Props) {
               </p>
               <p className="text-lg text-stone-700 leading-8">{aboutProduct}</p>
 
-              <ProductForm product={product} cartItems={cartItems} />
+              <ProductForm
+                product={product}
+                cartItems={cartItems}
+                isSignedIn={isSignedIn}
+              />
               <ProductDetails
                 id={id}
                 productName={productName}

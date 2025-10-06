@@ -14,9 +14,10 @@ type Props = {
     price: string;
     id: string;
   }[];
+  isSignedIn: boolean;
 };
 
-export default function ClassesPage({ classes }: Props) {
+export default function ClassesPage({ classes, isSignedIn }: Props) {
   const { targetRef } = useFixedOnScroll();
 
   return (
@@ -48,6 +49,7 @@ export default function ClassesPage({ classes }: Props) {
                 price={el.price}
                 imageUrl={el.image}
                 id={el.id}
+                isSignedIn={isSignedIn}
               />
             ))}
           </div>

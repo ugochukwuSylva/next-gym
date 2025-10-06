@@ -6,8 +6,8 @@ export default function SectionTwo() {
   return (
     <div className=" flex justify-center items-center h-full md:min-h-screen relative bg-gradient-to-r from-black/90 md:from-40% from-60% to-transparent md:p-10 p-3 overflow-x-hidden ">
       <Image
-        src="/sectionTwo-image-1.jpg"
         fill
+        src="/sectionTwo-image-1.jpg"
         alt="background image"
         className="object-cover flip-opposite -z-10"
       />

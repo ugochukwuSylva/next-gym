@@ -5,6 +5,7 @@ import { addToCart } from "../_lib/actions";
 import AddToCartButton from "./AddToCartButton";
 import QuantityButtons from "./QuantityButtons";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 type Props = {
   product: {
@@ -14,9 +15,10 @@ type Props = {
     productPrice: number;
   };
   cartItems: string[];
+  isSignedIn: boolean;
 };
 
-export default function ProductForm({ product, cartItems }: Props) {
+export default function ProductForm({ product, cartItems, isSignedIn }: Props) {
   const { id, productImage, productName, productPrice } = product;
 
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
@@ -34,30 +36,34 @@ export default function ProductForm({ product, cartItems }: Props) {
   const isInCart = cartItems.includes(productName);
 
   async function handleSubmit(formData: FormData) {
-    startTransition(async () => {
-      const product = {
-        productName,
-        productImage,
-        productQuantity: quantity,
-        productPrice,
-        totalPrice: quantity * productPrice,
-      };
+    if (isSignedIn) {
+      startTransition(async () => {
+        const product = {
+          productName,
+          productImage,
+          productQuantity: quantity,
+          productPrice,
+          totalPrice: quantity * productPrice,
+        };
 
-      const cartItem = addToCart.bind(null, product);
-      const { success, message } = await cartItem(formData);
+        const cartItem = addToCart.bind(null, product);
+        const { success, message } = await cartItem(formData);
 
-      if (message) {
-        setErrorMessage(message);
-      } else {
-        setErrorMessage("");
-      }
+        if (message) {
+          setErrorMessage(message);
+        } else {
+          setErrorMessage("");
+        }
 
-      if (success) {
-        toast.success(`Product #${id} added successfully 😊`);
-      } else {
-        toast.error(`Product #${id} could not be added 😞`);
-      }
-    });
+        if (success) {
+          toast.success(`Product #${id} added successfully 😊`);
+        } else {
+          toast.error(`Product #${id} could not be added 😞`);
+        }
+      });
+    } else {
+      redirect("/login");
+    }
   }
 
   return (

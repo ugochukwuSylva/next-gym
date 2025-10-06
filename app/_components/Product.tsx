@@ -8,13 +8,15 @@ import { BsCheckLg } from "react-icons/bs";
 import { addToCart } from "../_lib/actions";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 type Props = {
   product: ProductProps;
   cartItems: CartProps[];
+  isSignedIn: boolean;
 };
 
-export default function Product({ product, cartItems }: Props) {
+export default function Product({ product, cartItems, isSignedIn }: Props) {
   const { productName, productPrice, oldPrice, productImage, id } = product;
   const [isPending, startTransition] = useTransition();
 
@@ -23,24 +25,28 @@ export default function Product({ product, cartItems }: Props) {
     .includes(productName);
 
   function handleAddToCart() {
-    startTransition(async () => {
-      const product = {
-        productName,
-        productImage,
-        productPrice,
-        productQuantity: 1,
-        totalPrice: 1 * productPrice,
-      };
+    if (isSignedIn) {
+      startTransition(async () => {
+        const product = {
+          productName,
+          productImage,
+          productPrice,
+          productQuantity: 1,
+          totalPrice: 1 * productPrice,
+        };
 
-      const cartItem = addToCart.bind(null, product);
-      const { success } = await cartItem(product);
+        const cartItem = addToCart.bind(null, product);
+        const { success } = await cartItem(product);
 
-      if (success) {
-        toast.success(`Product #${id} added to cart successfully 😊`);
-      } else {
-        toast.error(`Product #${id} could not be added 😞`);
-      }
-    });
+        if (success) {
+          toast.success(`Product #${id} added to cart successfully 😊`);
+        } else {
+          toast.error(`Product #${id} could not be added 😞`);
+        }
+      });
+    } else {
+      redirect("/login");
+    }
   }
 
   return (
@@ -76,16 +82,17 @@ export default function Product({ product, cartItems }: Props) {
             <BsCheckLg size={24} /> <span className="ml-2">View cart</span>
           </Link>
         ) : (
-          <button
-            onClick={handleAddToCart}
-            className="flex items-center justify-center h-full w-full"
-            disabled={isPending}
-          >
-            <RiShoppingCartLine />{" "}
-            <span className="ml-2">{`${
-              isPending ? "Adding..." : "Add to cart"
-            }`}</span>
-          </button>
+          <form action={handleAddToCart}>
+            <button
+              className="flex items-center justify-center h-full w-full"
+              disabled={isPending}
+            >
+              <RiShoppingCartLine />{" "}
+              <span className="ml-2">{`${
+                isPending ? "Adding..." : "Add to cart"
+              }`}</span>
+            </button>
+          </form>
         )}
       </div>
     </div>

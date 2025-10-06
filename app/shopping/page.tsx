@@ -14,7 +14,11 @@ export default async function Shopping() {
 
   return (
     <main>
-      <ShoppingPage products={products} cartItems={cartItems} />
+      <ShoppingPage
+        products={products}
+        cartItems={cartItems}
+        isSignedIn={!!session}
+      />
     </main>
   );
 }
