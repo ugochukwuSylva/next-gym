@@ -6,6 +6,7 @@ type Props = {
   text2: string;
   text3: string;
   image: string;
+  backupImage?: string;
 };
 
 export default function SectionThreeImageCard({
@@ -13,16 +14,19 @@ export default function SectionThreeImageCard({
   text2,
   text3,
   image,
+  backupImage,
 }: Props) {
   return (
     <li className="relative group h-72 shadow-sm rounded-md mb-4 md:mb-0 hover:animate overflow-hidden">
       <Image
         src={image}
+        overrideSrc={backupImage}
         fill
         alt="gym-excercise"
         className="object-cover z-10"
         sizes="100"
       />
+
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/60 to-black/60 z-20"></div>
 
       <div className="flex flex-col justify-center items-center gap-6 w-full h-full text-white *:z-30">

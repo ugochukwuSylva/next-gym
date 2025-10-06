@@ -10,6 +10,7 @@ export default function SectionTwo() {
         src="/sectionTwo-image-1.jpg"
         alt="background image"
         className="object-cover flip-opposite -z-10"
+        overrideSrc="/gallery-image-4.jpg"
       />
 
       <div className="flex flex-col-reverse   lg:flex-row justify-between  text-stone-300 w-full">
