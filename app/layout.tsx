@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   description: "Gymnastic inspiration",
 
   icons: {
-    icon: "/icon.png",
+    icon: "/favicon.ico",
   },
 };
 
