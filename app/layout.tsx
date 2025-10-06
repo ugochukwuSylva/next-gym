@@ -39,6 +39,10 @@ export const metadata: Metadata = {
     default: "Welcome to Next-Gym",
   },
   description: "Gymnastic inspiration",
+
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default async function RootLayout({
