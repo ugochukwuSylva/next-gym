@@ -5,7 +5,12 @@ import { getMember } from "./app/_lib/data-services";
 import { createMember } from "./app/_lib/actions";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [Google],
+  providers: [
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+  ],
 
   callbacks: {
     // This is a follow-through function for middleware. Before middleware can grant access to specific pages as specified, it first checks if the user is authorised, then it returns a boolean result
