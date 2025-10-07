@@ -14,9 +14,6 @@ export async function signOutAction() {
 }
 
 export async function createMember(newMember: object) {
-  const session = await auth();
-  if (!session) throw new Error("You must be signed in");
-
   const { data, error } = await supabase.from("members").insert([newMember]);
 
   if (error) {
