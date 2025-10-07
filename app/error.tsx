@@ -30,7 +30,7 @@ export default function Error({ error, reset }: Props) {
         </div>
 
         <button
-          onClick={() => reset()}
+          onClick={reset}
           className="min-w-32 mb-20 lg:mb-0 bg-red-500 text-white hover:bg-black transition-all duration-300 p-3 rounded-md"
         >
           Reset
