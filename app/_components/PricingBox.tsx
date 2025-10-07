@@ -42,7 +42,7 @@ export default function PricingBox({
 function ButtonLink() {
   return (
     <div className="mt-20 lg:mt-auto bg-red-500 px-6 py-4  transition duration-300 hover:bg-white hover:text-red-500 text-white border-b-4 border-transparent hover:border-b-4 hover:border-b-red-500">
-      <Link href="#">
+      <Link href="/training-classes">
         <p className="transition duration-500 group-hover:animate-mini flex items-center gap-3 justify-center">
           More details <TbExternalLink className="font-semibold text-xl" />
         </p>

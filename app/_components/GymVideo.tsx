@@ -15,7 +15,7 @@ export default function GymVideo() {
 
   return (
     <div className="relative h-[80vh] w-4/5 rounded-lg  shadow-lg ">
-      {isLoading && <Spinner status="LOADING..." />}
+      {isLoading && <Spinner status="LOADING" />}
 
       <ReactPlayer
         width="100%"
