@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { supabase } from "./supabase";
 
 export async function getMembers() {
-  const { data, error } = await supabase.from("member").select("*");
+  const { data, error } = await supabase.from("members").select("*");
 
   if (error) {
     throw new Error("Could not fetch data");
@@ -139,6 +139,8 @@ export async function getCart(email: string) {
 }
 
 export async function getMember(email: string | null | undefined) {
+  if (!email) return;
+
   const { data, error } = await supabase
     .from("members")
     .select("*")

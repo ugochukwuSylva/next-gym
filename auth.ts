@@ -19,6 +19,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
 
     async signIn({ user }) {
+      if (!user?.email) {
+        console.error("No email in user object");
+        return false;
+      }
+
       try {
         const existingMember = await getMember(user.email);
 
