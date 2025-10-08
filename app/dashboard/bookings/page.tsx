@@ -87,7 +87,7 @@ function BookNow() {
     <div className="flex flex-col gap-3 justify-center items-center">
       <p className="text-xl text-stone-600 text-center">
         {" "}
-        You don&apos;t have any confirmed booking yet{" "}
+        You don&apos;t have any booking yet{" "}
       </p>
       <Link
         href={`/training-classes`}
