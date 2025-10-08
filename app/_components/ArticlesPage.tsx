@@ -1,6 +1,5 @@
 "use client";
 
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 import ArticleMainBox from "./ArticleMainBox";
 import ArticleSideBox from "./ArticleSideBox";
@@ -20,7 +19,6 @@ type Props = {
 };
 
 export default function ArticlesPage({ articles }: Props) {
-  const { targetRef } = useFixedOnScroll();
   const VIEWS_PER_PAGE = 2;
 
   const {
@@ -35,7 +33,7 @@ export default function ArticlesPage({ articles }: Props) {
   } = usePagination(articles, VIEWS_PER_PAGE, articles.length);
 
   return (
-    <div className="md:min-h-screen lg:h-screen" ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen w-full">
       <PagesBackgroundContainer
         imageUrl="/articles-bg.jpg"
         altText="background image"

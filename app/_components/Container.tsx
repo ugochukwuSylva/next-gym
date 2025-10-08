@@ -1,6 +1,3 @@
-"use client";
-
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 
 type Props = {
@@ -8,10 +5,8 @@ type Props = {
 };
 
 export default function Container({ children }: Props) {
-  const { targetRef } = useFixedOnScroll();
-
   return (
-    <div className="md:min-h-screen lg:h-screen " ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen ">
       <PagesBackgroundContainer
         imageUrl="/dashboard-bg.jpg"
         altText="background image"

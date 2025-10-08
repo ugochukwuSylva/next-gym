@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import SectionHeaders from "./SectionHeaders";
 import BookingForm from "./BookingForm";
 import BackButton from "./BackButton";
@@ -33,7 +32,6 @@ export default function TrainingClassIdPage({
   bookedClassId,
 }: Props) {
   const [isClickedBooking, setIsClickedBooking] = useState<boolean>(false);
-  const { targetRef } = useFixedOnScroll();
 
   const { workoutType, workoutDescription, image, id } = selectedClass;
   const [text3, text4] = workoutType.split(" ");
@@ -41,7 +39,7 @@ export default function TrainingClassIdPage({
   const isAlreadyBooked = bookedClassId.includes(id);
 
   return (
-    <div className=" md:min-h-screen lg:h-screen w-full" ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen w-full">
       <PagesBackgroundContainer
         imageUrl="/trainingClassId-image.jpg"
         altText="background image"

@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import ProductDetails from "./ProductDetails";
 import ProductForm from "./ProductForm";
 
@@ -23,12 +20,10 @@ export default function SelectedProduct({
   cartItems,
   isSignedIn,
 }: Props) {
-  const { targetRef } = useFixedOnScroll();
-
   const { id, productImage, productName, productPrice, aboutProduct } = product;
 
   return (
-    <div className="md:min-h-screen lg:h-screen" ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen">
       <PagesBackgroundContainer
         imageUrl="/selectedProduct-bg.jpg"
         altText="background image"

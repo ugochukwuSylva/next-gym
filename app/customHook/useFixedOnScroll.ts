@@ -17,12 +17,30 @@ function FixedOnScroll() {
         documentEL.classList.add("md:mt-14");
       }
     }
+    const offsetElement = document.querySelector(".header") as HTMLElement; // Adjust selector
+    const offsetHeight = offsetElement?.offsetHeight ?? 0;
 
-    new IntersectionObserver(stickyFn, {
+    // Dynamically set rootMargin using offsetHeight
+    const observer = new IntersectionObserver(stickyFn, {
       root: null,
       threshold: 0,
-      rootMargin: `-590px`,
-    }).observe(targetRef.current!);
+      rootMargin: `-${offsetHeight}px`,
+    });
+
+    // Start observing
+    if (targetRef.current) {
+      observer.observe(targetRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+
+    // new IntersectionObserver(stickyFn, {
+    //   root: null,
+    //   threshold: 0,
+    //   rootMargin: `-590px`,
+    // }).observe(targetRef.current!);
   }, [targetRef]);
 
   return { targetRef };

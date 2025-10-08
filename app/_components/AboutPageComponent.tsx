@@ -1,6 +1,3 @@
-"use client";
-
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "../_components/PagesBackgroundContainer";
 import SectionHeaders from "../_components/SectionHeaders";
 import Image from "next/image";
@@ -13,10 +10,8 @@ type Props = {
 };
 
 export default function AboutComponentPage({ children }: Props) {
-  const { targetRef } = useFixedOnScroll();
-
   return (
-    <div className=" md:min-h-screen lg:h-screen w-full " ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen w-full ">
       <PagesBackgroundContainer
         imageUrl="/about-bg.jpg"
         altText="about background"

@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -17,11 +14,10 @@ type Props = {
 
 export default function ArticlesPageId({ selectedArticle }: Props) {
   const { title, authorName, image, writeup, date } = selectedArticle;
-  const { targetRef } = useFixedOnScroll();
   const router = useRouter();
 
   return (
-    <div className=" md:min-h-screen lg:h-screen w-full" ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen w-full">
       <PagesBackgroundContainer
         imageUrl="/articlesPageId-bg.jpg"
         altText="background image"

@@ -1,7 +1,6 @@
 "use client";
 
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import Product from "./Product";
 import PaginationButtons from "./PaginationButtons";
 import usePagination from "../customHook/usePagination";
@@ -22,7 +21,6 @@ export default function ShoppingPage({
   cartItems,
   isSignedIn,
 }: Props) {
-  const { targetRef } = useFixedOnScroll();
   const [numProduct, setNumProduct] = useState<number>(8);
   const [, setSortOption] = useState<string>("all");
   const searchParams = useSearchParams();
@@ -73,7 +71,7 @@ export default function ShoppingPage({
   );
 
   return (
-    <div className="md:min-h-screen lg:h-screen" ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen">
       <PagesBackgroundContainer
         imageUrl="/shopping-bg.jpg"
         altText="background image"

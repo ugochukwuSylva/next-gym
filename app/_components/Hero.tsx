@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import HeroItem1 from "./HeroItem1";
 import HeroItemMini from "./HeroItemMini";
 import TextExpander from "./TextExpander";
-import useFixedOnScroll from "../customHook/useFixedOnScroll";
 import HeroItem2 from "./HeroItem2";
 
 export default function Hero() {
@@ -35,10 +34,8 @@ export default function Hero() {
     return () => clearTimeout(id);
   }, [count, heroLength]);
 
-  const { targetRef } = useFixedOnScroll();
-
   return (
-    <div ref={targetRef} className="w-full min-h-[110vh] relative z-20">
+    <div className=" w-full min-h-[110vh] relative z-20">
       <div className="w-full h-auto ">
         {heros[count]}
         {/*  */}

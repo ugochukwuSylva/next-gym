@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import SectionHeaders from "./SectionHeaders";
 import SkillProgressBar from "./SkillProgressBar";
