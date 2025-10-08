@@ -18,7 +18,7 @@ const workoutList = [
 
 export default function WorkoutList() {
   return (
-    <div className="grid md:grid-cols-3 gap-6 mt-7">
+    <div className="grid md:grid-cols-3 gap-6 mt-7 pb-6">
       {workoutList.map((workouts) => (
         <WorkoutListItem key={workouts} workout={workouts} />
       ))}

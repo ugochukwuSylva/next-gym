@@ -5,7 +5,7 @@ import AnimatedImage from "./AnimatedImage";
 export default function SectionOne() {
   return (
     <section className="bg-white  w-full md:px-6  pt-[40rem] md:pt-[45rem] flex  flex-col-reverse items-start lg:pt-[25rem] lg:grid lg:grid-cols-[20rem_1fr] gap-1 lg:gap-16 overflow-x-hidden">
-      <div className="relative right-10 md:m-auto lg:right-0">
+      <div className="relative right-10 md:m-auto lg:right-0 h-full">
         <AnimatedImage />
       </div>
 
