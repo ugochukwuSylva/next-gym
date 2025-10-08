@@ -1,7 +1,7 @@
 "use server";
 
 import { auth, signIn, signOut } from "@/auth";
-import { supabase, supabase_mutate } from "./supabase";
+import { supabase_mutate } from "./supabase";
 import { getBookingsByMemberId, getCart } from "./data-services";
 import { revalidatePath } from "next/cache";
 
@@ -14,6 +14,8 @@ export async function signOutAction() {
 }
 
 export async function createMember(newMember: object) {
+  const supabase = supabase_mutate();
+
   const { data, error } = await supabase.from("members").insert([newMember]);
 
   if (error) {
