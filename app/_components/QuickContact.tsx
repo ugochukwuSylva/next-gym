@@ -7,10 +7,7 @@ export default function QuickContact() {
   const { targetRef } = useFixedOnScroll();
 
   return (
-    <div
-      className="header hidden md:block transition-all duration-500"
-      ref={targetRef}
-    >
+    <div className="header hidden md:block" ref={targetRef}>
       <div className=" flex justify-between absolute top-0 z-50 w-full px-10 py-5 bg-gradient-to-b from-black/70 to-transparent ">
         <span className="  text-sm text-slate-300 cursor-pointer hover:text-red-500 transition-all duration-100">
           <a href="tel:09096859314">

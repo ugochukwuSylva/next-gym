@@ -1,6 +1,5 @@
 "use client";
 
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "./_components/PagesBackgroundContainer";
 
 type Props = {
@@ -9,10 +8,8 @@ type Props = {
 };
 
 export default function Error({ error, reset }: Props) {
-  const { targetRef } = useFixedOnScroll();
-
   return (
-    <main className=" md:min-h-screen lg:h-screen w-full " ref={targetRef}>
+    <main className=" md:min-h-screen lg:h-screen w-full ">
       <PagesBackgroundContainer
         imageUrl="/notFound-image.jpg"
         altText="background image"

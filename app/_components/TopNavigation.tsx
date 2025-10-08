@@ -60,7 +60,7 @@ export default function TopNavigation({ avatar }: Props) {
   const { isBottomPage } = useBottomPage();
 
   return (
-    <div className="transition flex justify-center items-center w-full absolute  md:mt-14 z-40">
+    <div className="transition-all duration-500 flex justify-center items-center w-full absolute  md:mt-14 z-40">
       <div
         className={`w-full md:w-[95%] md:rounded-md transition-all ${
           isBottomPage
@@ -82,7 +82,7 @@ export default function TopNavigation({ avatar }: Props) {
           ))}
         </div>
 
-        {avatar && ( // prettier-ignore
+        {avatar && (
           <Image
             src={avatar}
             alt="avatar"

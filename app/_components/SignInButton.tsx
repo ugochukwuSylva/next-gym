@@ -1,3 +1,5 @@
+"use client";
+
 import { FcGoogle } from "react-icons/fc";
 import { signInAction } from "../_lib/actions";
 import { useTransition } from "react";

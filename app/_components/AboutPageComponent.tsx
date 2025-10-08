@@ -1,3 +1,5 @@
+"use client";
+
 import PagesBackgroundContainer from "../_components/PagesBackgroundContainer";
 import SectionHeaders from "../_components/SectionHeaders";
 import Image from "next/image";

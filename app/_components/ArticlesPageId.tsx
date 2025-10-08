@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 import { useRouter } from "next/navigation";

@@ -1,3 +1,5 @@
+"use client";
+
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 
 type Props = {

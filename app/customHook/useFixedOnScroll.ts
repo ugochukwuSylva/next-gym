@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function FixedOnScroll() {
+export default function useFixedOnScroll() {
   const targetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,15 +35,9 @@ function FixedOnScroll() {
     return () => {
       observer.disconnect();
     };
-
-    // new IntersectionObserver(stickyFn, {
-    //   root: null,
-    //   threshold: 0,
-    //   rootMargin: `-590px`,
-    // }).observe(targetRef.current!);
   }, [targetRef]);
 
   return { targetRef };
 }
 
-export default FixedOnScroll;
+

@@ -1,3 +1,5 @@
+"use client";
+
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 import SectionHeaders from "./SectionHeaders";
 import ClassBooking from "./ClassBooking";

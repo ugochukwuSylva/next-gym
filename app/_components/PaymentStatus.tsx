@@ -16,7 +16,7 @@ export default async function PaymentStatus({ status, pageName, path }: Props) {
 
   const paymentDetails = await getPaymentDetails(userEmail);
 
-  const { amount_total, card_brand, last4_digits } = paymentDetails[0];
+  const { amount_total, card_brand, last4_digits } = paymentDetails[0] || [];
 
   return (
     <div className=" w-full h-screen backdrop-blur-sm bg-black/80 flex justify-center items-center fixed left-0 top-0 z-50">
