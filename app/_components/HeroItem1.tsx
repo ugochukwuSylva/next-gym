@@ -13,7 +13,7 @@ export default function HeroItem1({ image, text1, text2 }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 1 }}
     >
       <Image
         src={image}
