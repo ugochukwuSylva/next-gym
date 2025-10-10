@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { supabase } from "./supabase";
+import { auth } from "@/auth";
 
 export async function getMembers() {
   const { data, error } = await supabase.from("members").select("*");
@@ -155,6 +156,12 @@ export async function getMember(email: string | null | undefined) {
 }
 
 export async function getPaymentDetails(sessionId: string, email: string) {
+  const session = await auth();
+  const userEmail = session?.user?.email as string;
+
+  if (userEmail !== email)
+    throw new Error("You do not have permission to this page");
+
   const { data, error } = await supabase
     .from("payments")
     .select("amount_total, card_brand, last4_digits, email")
