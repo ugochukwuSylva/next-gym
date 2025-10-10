@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BsCheck2Circle } from "react-icons/bs";
 import { ImCancelCircle } from "react-icons/im";
 import { getPaymentDetails } from "../_lib/data-services";
+import { auth } from "@/auth";
 
 type Props = {
   status: "successful" | "cancel";
@@ -16,7 +17,12 @@ export default async function PaymentStatus({
   path,
   sessionId,
 }: Props) {
-  const paymentDetails = await getPaymentDetails(String(sessionId));
+  const session = await auth();
+  const userEmail = session?.user?.email as string;
+  const paymentDetails = await getPaymentDetails(
+    String(sessionId),
+    String(userEmail)
+  );
 
   const { amount_total, card_brand, last4_digits } = paymentDetails[0] || [];
 

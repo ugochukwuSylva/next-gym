@@ -154,10 +154,11 @@ export async function getMember(email: string | null | undefined) {
   return data;
 }
 
-export async function getPaymentDetails(sessionId: string) {
+export async function getPaymentDetails(sessionId: string, email: string) {
   const { data, error } = await supabase
     .from("payments")
     .select("amount_total, card_brand, last4_digits, email")
+    .eq("email", email)
     .eq("stripe_session_id", sessionId);
 
   if (error) {
