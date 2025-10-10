@@ -1,9 +1,21 @@
+type Props = {
+  searchParams: {
+    session_id: string | null;
+  };
+};
+
 import PaymentStatus from "@/app/_components/PaymentStatus";
 
-export default function page() {
+export default function page({ searchParams }: Props) {
+  const sessionId = searchParams.session_id ?? null;
   return (
     <div>
-      <PaymentStatus status="cancel" pageName="cart" path="/dashboard/cart" />
+      <PaymentStatus
+        status="cancel"
+        pageName="cart"
+        path="/dashboard/cart"
+        sessionId={sessionId}
+      />
     </div>
   );
 }
