@@ -9,7 +9,12 @@ type Props = {
 
 export default function HeroItem1({ image, text1, text2 }: Props) {
   return (
-    <div className="">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Image
         src={image}
         alt="hero-image"
@@ -49,6 +54,6 @@ export default function HeroItem1({ image, text1, text2 }: Props) {
           </motion.span>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
