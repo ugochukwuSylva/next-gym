@@ -155,12 +155,28 @@ export async function getMember(email: string | null | undefined) {
   return data;
 }
 
+export async function getPaymentDetailsByEmail(email: string) {
+  const { data, error } = await supabase
+    .from("payments")
+    .select("stripe_session_id")
+    .eq("email", email);
+
+  if (error) throw new Error("Could not fetch payment details");
+
+  return data;
+}
+
 export async function getPaymentDetails(sessionId: string, email: string) {
   const session = await auth();
   const userEmail = session?.user?.email as string;
+  const allPayments = await getPaymentDetailsByEmail(userEmail);
 
-  if (userEmail !== email)
-    throw new Error("You do not have permission to this page");
+  const isSessionIdInPayment = allPayments
+    .map((payment) => payment.stripe_session_id)
+    .includes(sessionId);
+
+  if (!isSessionIdInPayment)
+    throw new Error("Valid payment session id is required");
 
   const { data, error } = await supabase
     .from("payments")
