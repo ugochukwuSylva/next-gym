@@ -19,7 +19,6 @@ export async function createMember(newMember: object) {
   const { data, error } = await supabase.from("members").insert([newMember]);
 
   if (error) {
-    console.error("Supabase error:", error.message);
     throw new Error("Could not create new member");
   }
 
@@ -49,8 +48,6 @@ export async function createGymBooking(id: number, formData: FormData) {
   const { error } = await supabase.from("bookings").insert([booking]).select();
 
   if (error) {
-    console.error("Supabase error:", error.message);
-
     // I want to display the state of booking with react-hot-toast which is not supported in server actions, hence the reason I am manually returning a message that I will use from the client-side
     return { success: false, message: "Gym class failed to book 😔" };
     throw new Error("Gym class failed to book");
@@ -156,7 +153,6 @@ export async function addToCart(
       .select();
 
     if (error) {
-      console.error(error.message);
       return { success: false, message: "Could not add product to cart" };
       throw new Error("Could not add product to cart");
     }
@@ -182,7 +178,6 @@ export async function removeCartItem(cartItemId: number) {
   const { error } = await supabase.from("cart").delete().eq("id", cartItemId);
 
   if (error) {
-    console.log(error.message);
     throw new Error("Could not remove cart item");
   }
 
@@ -209,7 +204,6 @@ export async function editCartItem(
     .eq("id", cartId);
 
   if (error) {
-    console.log(error.message);
     throw new Error("Could not edit cart item");
   }
   revalidatePath("/dashboard/cart");

@@ -3,7 +3,7 @@
 import PagesBackgroundContainer from "./_components/PagesBackgroundContainer";
 
 type Props = {
-  error: { message: string };
+  error: Error;
   reset: () => void;
 };
 

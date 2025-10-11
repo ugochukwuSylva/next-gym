@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { supabase } from "./supabase";
 import { auth } from "@/auth";
 
@@ -47,7 +46,7 @@ export async function getTrainerById(id: string) {
     .single();
 
   if (error) {
-    notFound();
+    throw new Error("Could not get trainer");
   }
 
   return data;
@@ -61,7 +60,7 @@ export async function getArticleById(id: string) {
     .single();
 
   if (error) {
-    notFound();
+    throw new Error("Could not get article");
   }
 
   return data;
@@ -84,7 +83,6 @@ export async function getTrainingClassById(id: string) {
     .single();
 
   if (error) {
-    console.error(error.message);
     throw new Error("Could not fetch data");
   }
 
@@ -94,7 +92,6 @@ export async function getTrainingClassById(id: string) {
 export async function getArticles() {
   const { data, error } = await supabase.from("articles").select("*");
   if (error) {
-    console.error(error.message);
     throw new Error("Could not fetch Articles");
   }
 
@@ -119,7 +116,7 @@ export async function getProductById(id: string) {
     .single();
 
   if (error) {
-    notFound();
+    throw new Error("Could not fetch product");
   }
 
   return data;
@@ -185,7 +182,7 @@ export async function getPaymentDetails(sessionId: string, email: string) {
     .eq("stripe_session_id", sessionId);
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error("Could not get payment details");
   }
 
   return data;
