@@ -5,6 +5,7 @@ import ArticleMainBox from "./ArticleMainBox";
 import ArticleSideBox from "./ArticleSideBox";
 import PaginationButtons from "./PaginationButtons";
 import usePagination from "../customHook/usePagination";
+import { formatDateOnly } from "../_utils/formatDate";
 
 type Props = {
   articles: {
@@ -20,6 +21,11 @@ type Props = {
 
 export default function ArticlesPage({ articles }: Props) {
   const VIEWS_PER_PAGE = 2;
+
+  const today = new Date();
+  const oneMonthAgo = new Date(
+    today.setMonth(today.getMonth() - 2)
+  ).toDateString();
 
   const {
     arrContents,
@@ -49,7 +55,7 @@ export default function ArticlesPage({ articles }: Props) {
                 authorName={article.authorName}
                 authorAvatar={article.authorAvatar}
                 writeup={article.writeup}
-                date={article.date}
+                date={formatDateOnly(oneMonthAgo)}
                 image={article.image}
                 id={article.id}
               />

@@ -1,11 +1,17 @@
 import Image from "next/image";
 import { FaLink } from "react-icons/fa6";
 import Overlay from "./Overlay";
+import { formatDateOnly } from "../_utils/formatDate";
 
 type Props = {
   title: string;
   imagePath: string;
 };
+
+const today = new Date();
+const oneMonthAgo = new Date(
+  today.setMonth(today.getMonth() - 1)
+).toDateString();
 
 export default function ClassUpdateContent({ title, imagePath }: Props) {
   return (
@@ -26,7 +32,7 @@ export default function ClassUpdateContent({ title, imagePath }: Props) {
           {title}
         </span>
         <span className="p-1 tracking-wider w-full text-xs border-t-2 text-red-500/60 uppercase border-red-500">
-          10 JUNE 2024
+          {formatDateOnly(oneMonthAgo.toUpperCase())}
         </span>
       </div>
     </div>

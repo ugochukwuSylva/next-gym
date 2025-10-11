@@ -3,6 +3,7 @@
 import Image from "next/image";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 import { useRouter } from "next/navigation";
+import { formatDateOnly } from "../_utils/formatDate";
 
 type Props = {
   selectedArticle: {
@@ -15,8 +16,13 @@ type Props = {
 };
 
 export default function ArticlesPageId({ selectedArticle }: Props) {
-  const { title, authorName, image, writeup, date } = selectedArticle;
+  const { title, authorName, image, writeup } = selectedArticle;
   const router = useRouter();
+
+  const today = new Date();
+  const oneMonthAgo = new Date(
+    today.setMonth(today.getMonth() - 2)
+  ).toDateString();
 
   return (
     <div className=" md:min-h-screen lg:h-screen w-full">
@@ -41,7 +47,7 @@ export default function ArticlesPageId({ selectedArticle }: Props) {
                 {title}
               </p>
               <span className="text-sm text-stone-500">
-                Author: {authorName} &bull; {date}
+                Author: {authorName} &bull; {formatDateOnly(oneMonthAgo)}
               </span>
             </div>
           </div>
