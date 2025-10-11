@@ -1,15 +1,13 @@
 "use client";
 
-import useFixedOnScroll from "@/app/customHook/useFixedOnScroll";
 import PagesBackgroundContainer from "./PagesBackgroundContainer";
 import { useRouter } from "next/navigation";
 
 export default function PageNotFound() {
-  const { targetRef } = useFixedOnScroll();
   const router = useRouter();
 
   return (
-    <div className=" md:min-h-screen lg:h-screen w-full " ref={targetRef}>
+    <div className=" md:min-h-screen lg:h-screen w-full ">
       <PagesBackgroundContainer
         imageUrl="/notFound-image.jpg"
         altText="background image"

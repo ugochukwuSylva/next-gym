@@ -1,3 +1,5 @@
+"use server";
+
 import { supabase } from "./supabase";
 import { auth } from "@/auth";
 
