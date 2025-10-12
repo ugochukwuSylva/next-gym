@@ -50,7 +50,7 @@ export default function TopNavigation({ avatar }: Props) {
     },
     {
       address: `/shopping?sort=${sort}`,
-      text1: "Shopping",
+      text1: "Products",
       text2: "Cart",
     },
   ];

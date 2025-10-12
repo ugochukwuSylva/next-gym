@@ -1,5 +1,3 @@
-"use server";
-
 import { supabase } from "./supabase";
 import { auth } from "@/auth";
 
@@ -232,7 +230,7 @@ export async function getCountries() {
   }
 }
 
-export async function handleBooikngCheckout(
+export async function handleBookngCheckout(
   priceId: string,
   email: string,
   bookingId: number

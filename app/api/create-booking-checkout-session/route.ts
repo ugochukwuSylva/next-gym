@@ -16,8 +16,9 @@ export async function POST(req: Request) {
           quantity: 1,
         },
       ],
-      success_url: `https://ugo-gym.vercel.app/dashboard/bookings/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `https://ugo-gym.vercel.app/dashboard/bookings/cancel`,
+      success_url:
+        "https://ugo-gym.vercel.app/dashboard/bookings/success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://ugo-gym.vercel.app/dashboard/bookings/cancel",
 
       // custom property - single payment
       metadata: {

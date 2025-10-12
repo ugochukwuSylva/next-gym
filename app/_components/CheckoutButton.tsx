@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { handleBooikngCheckout } from "../_lib/data-services";
+import { handleBookngCheckout } from "../_lib/data-services";
 
 type Props = {
   bookingId: number;
@@ -19,7 +19,7 @@ export default function CheckoutButton({
   const [isPending, startTransition] = useTransition();
 
   function handleSubmit(param1: string, param2: string, param3: number) {
-    startTransition(() => handleBooikngCheckout(param1, param2, param3));
+    startTransition(() => handleBookngCheckout(param1, param2, param3));
   }
 
   return (

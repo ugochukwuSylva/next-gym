@@ -33,8 +33,9 @@ export async function POST(req: Request) {
       line_items,
       mode: "payment",
       customer_email: email,
-      success_url: `https://ugo-gym.vercel.app/dashboard/cart/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `https://ugo-gym.vercel.app/dashboard/cart/cancel`,
+      success_url:
+        "https://ugo-gym.vercel.app/dashboard/cart/success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://ugo-gym.vercel.app/dashboard/cart/cancel",
 
       // custom property - bulk payment
       metadata: {
