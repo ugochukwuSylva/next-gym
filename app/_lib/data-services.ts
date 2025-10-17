@@ -234,7 +234,7 @@ export async function emailNotification(message: string) {
   const session = await auth();
   const userEmail = session?.user?.email as string;
   const names = session?.user?.name as string;
-  const name = names.split(" ")[0];
+  const name = names?.split(" ")[0];
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/send-email`,
