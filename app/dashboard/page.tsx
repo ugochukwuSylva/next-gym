@@ -4,12 +4,7 @@ import { MdOutlineEditCalendar } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 
 import { auth } from "@/auth";
-import {
-  emailNotification,
-  getBookings,
-  getCart,
-  getMembers,
-} from "../_lib/data-services";
+import { getBookings, getCart } from "../_lib/data-services";
 import Image from "next/image";
 import dashboardImage from "@/public/dashboard-bg-2.jpg";
 
@@ -31,12 +26,6 @@ export default async function page() {
     (cur, acc) => cur + acc.productQuantity,
     0
   );
-
-  const isNewUser = (await getMembers())
-    .map((member) => member.email)
-    .includes(String(session?.user?.email));
-
-  if (!isNewUser) await emailNotification("Your sign up is successful 😊");
 
   return (
     <>
