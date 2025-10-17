@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { BsCheck2Circle } from "react-icons/bs";
 import { ImCancelCircle } from "react-icons/im";
-import { getPaymentDetails } from "../_lib/data-services";
+import { emailNotification, getPaymentDetails } from "../_lib/data-services";
 import { auth } from "@/auth";
+import { formatCurrency } from "../_utils/formatDate";
 
 type Props = {
   status: "successful" | "cancel";
@@ -25,6 +26,10 @@ export default async function PaymentStatus({
   );
 
   const { amount_total, card_brand, last4_digits } = paymentDetails[0] || [];
+  if (amount_total)
+    await emailNotification(
+      `Your payment (${formatCurrency(amount_total / 100)}) is successful! 😊`
+    );
 
   return (
     <div className=" w-full h-screen backdrop-blur-sm bg-black/80 flex justify-center items-center fixed left-0 top-0 z-50">

@@ -86,6 +86,7 @@ export async function deleteBooking(bookingId: number) {
     throw new Error("Could not delete booking");
   }
   revalidatePath("/dashboard/bookings");
+
   return {
     success: true,
     message: `Booking #${bookingId} deleted successfully 😊`,

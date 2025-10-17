@@ -230,6 +230,38 @@ export async function getCountries() {
   }
 }
 
+export async function emailNotification(message: string) {
+  const session = await auth();
+  const userEmail = session?.user?.email as string;
+  const names = session?.user?.name as string;
+  const name = names.split(" ")[0];
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/send-email`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to: userEmail,
+        subject: "Notification from Next-Gym",
+        html: `
+      <div>
+        <p>Hello ${name},</p>
+        <p>${message}</p>
+        <p>Thank you! 🙏</p>
+        <p>Please note that this is a test email and it is unmonitored</p>
+        <p>Best regards</p>
+      </div>
+      `,
+      }),
+    }
+  );
+
+  if (!res) throw new Error("Could not send email");
+  const data = res.json();
+  return data;
+}
+
 export async function handleBookngCheckout(
   priceId: string,
   email: string,
