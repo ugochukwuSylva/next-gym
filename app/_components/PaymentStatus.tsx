@@ -30,7 +30,7 @@ export default async function PaymentStatus({
   const { amount_total, card_brand, last4_digits } = paymentDetails[0] || [];
   if (amount_total)
     await emailNotification(
-      `Your payment (${formatCurrency(amount_total / 100)}) was successful! 😊`,
+      `Your payment (${formatCurrency(amount_total / 100)}) was successful 😊`,
       firstName,
       userEmail
     );
