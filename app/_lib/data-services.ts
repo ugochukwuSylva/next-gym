@@ -230,11 +230,12 @@ export async function getCountries() {
   }
 }
 
-export async function emailNotification(message: string) {
-  const session = await auth();
-  const userEmail = session?.user?.email as string;
-  const names = session?.user?.name as string;
-  const name = names?.split(" ")[0];
+export async function emailNotification(
+  message: string,
+  userName: string,
+  userEmail: string
+) {
+  const name = userName?.split(" ")[0];
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/send-email`,
@@ -249,7 +250,7 @@ export async function emailNotification(message: string) {
         <p>Hello ${name},</p>
         <p>${message}</p>
         <p>Thank you! 🙏</p>
-        <p>Please note that this is a test email and it is unmonitored</p>
+        <p>NB: This email address is not monitored</p>
         <p>Best regards</p>
       </div>
       `,

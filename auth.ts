@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 
 import Google from "next-auth/providers/google";
-import { getMember } from "./app/_lib/data-services";
+import { emailNotification, getMember } from "./app/_lib/data-services";
 import { createMember } from "./app/_lib/actions";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -21,8 +21,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async signIn({ user }) {
       try {
         const existingMember = await getMember(user.email);
-        if (!existingMember)
+        if (!existingMember) {
           await createMember({ email: user.email, fullName: user.name });
+
+          if (user.email && user.name) {
+            await emailNotification(
+              "Your sign-up was successful 😊",
+              String(user.name?.split(" ")[0]),
+              user.email
+            );
+          }
+        }
 
         return true;
       } catch {
@@ -35,6 +44,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const member = await getMember(session.user.email);
 
       session.user.memberId = member.id;
+      // await emailNotification("Your sign-up was successful 😊");
 
       return session;
     },

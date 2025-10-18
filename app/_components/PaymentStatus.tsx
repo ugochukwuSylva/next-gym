@@ -20,6 +20,8 @@ export default async function PaymentStatus({
 }: Props) {
   const session = await auth();
   const userEmail = session?.user?.email as string;
+  const fullName = session?.user?.name as string;
+  const firstName = fullName?.split(" ")[0];
   const paymentDetails = await getPaymentDetails(
     String(sessionId),
     String(userEmail)
@@ -28,7 +30,9 @@ export default async function PaymentStatus({
   const { amount_total, card_brand, last4_digits } = paymentDetails[0] || [];
   if (amount_total)
     await emailNotification(
-      `Your payment (${formatCurrency(amount_total / 100)}) is successful! 😊`
+      `Your payment (${formatCurrency(amount_total / 100)}) was successful! 😊`,
+      firstName,
+      userEmail
     );
 
   return (
